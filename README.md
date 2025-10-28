@@ -34,18 +34,33 @@ terraform init
 terraform apply
 ```
 
+## Server Configuration
+
+Follow [SSH with Access for Infrastructure (recommended)](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/use-cases/ssh/ssh-infrastructure-access/)
+
+Configure server with:
+
+```bash
+chmod +x ./src/server/install.sh
+./src/server/install.sh
+```
+
+### Individual Scripts
+- `./src/server/sshd/sshd.sh` - Setup sshd for Meerkat
+
+
 ## Client Configuration
 
 Configure client devices with:
 
 ```bash
-chmod +x ./src/install.sh
-./src/install.sh
+chmod +x ./src/client/install.sh
+./src/client/install.sh
 ```
 
 - Adds SSH host for meerkat.
 - Patches SDKMAN! to automatically import Cloudflare Zero Trust certificate when installing a Java JDK.
 
 ### Individual Scripts
-- `./src/ssh/ssh.sh` - Adds SSH host for meerkat.
-- `./src/sdkman/patch.sh` - Patches SDKMAN!
+- `./src/client/ssh/ssh.sh` - Adds SSH host for meerkat.
+- `./src/client/sdkman/patch.sh` - Patches SDKMAN!
