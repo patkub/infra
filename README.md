@@ -4,10 +4,10 @@
 
 Terraform configuration for my infrastructure.
 
-- PC connected to Cloudflare tunnel accessible at [meerkat.patkub.vip](https://meerkat.patkub.vip/)
-- Access to [meerkat.patkub.vip](https://meerkat.patkub.vip/) is secured via Auth0 OIDC Client
+- PC connected to Cloudflare tunnel accessible at [meerkat.patkub.vip](https://meerkat.patkub.vip/).
+- Access to [meerkat.patkub.vip](https://meerkat.patkub.vip/) is secured via Auth0 OIDC Client.
 
-## Install
+## Cloud Configuration
 
 Create `terraform.tfvars` with:
 
@@ -34,11 +34,18 @@ terraform init
 terraform apply
 ```
 
-## Configure SDKMAN
+## Client Configuration
 
-Patch SDKMAN! to automatically install Cloudflare Zero Trust certificate when installing a Java JDK.
+Configure client devices with:
 
 ```bash
-chmod +x ./sdkman/patch.sh
-./sdkman/patch.sh
+chmod +x ./src/install.sh
+./src/install.sh
 ```
+
+- Adds SSH host for meerkat.
+- Patches SDKMAN! to automatically import Cloudflare Zero Trust certificate when installing a Java JDK.
+
+### Individual Scripts
+- `./src/ssh/ssh.sh` - Adds SSH host for meerkat.
+- `./src/sdkman/patch.sh` - Patches SDKMAN!

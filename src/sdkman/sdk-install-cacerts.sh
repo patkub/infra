@@ -20,7 +20,7 @@ function __sdk_install() {
 
     # format cloudflare certificate
     openssl x509 -in /usr/local/share/ca-certificates/managed-warp.pem -inform pem -out "${SDKMAN_DIR}/etc/managed-warp.der" -outform der
-    # install cloudflare certificate
+    # import cloudflare certificate
     "${java_home}/bin/keytool" -import -trustcacerts -alias 'Cloudflare Root CA' -file "${SDKMAN_DIR}/etc/managed-warp.der" -keystore "$java_home/lib/security/cacerts" -storepass changeit -noprompt 2>&1
   fi
 
