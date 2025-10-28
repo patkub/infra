@@ -5,7 +5,7 @@
 Terraform configuration for my infrastructure.
 
 - PC connected to Cloudflare tunnel accessible at [meerkat.patkub.vip](https://meerkat.patkub.vip/)
-- Access to [meerkat.patkub.vip](https://meerkat.patkub.vip/) is secured via Auth0 OIDC Client requiring device Passkey Auth
+- Access to [meerkat.patkub.vip](https://meerkat.patkub.vip/) is secured via Auth0 OIDC Client
 
 ## Install
 
