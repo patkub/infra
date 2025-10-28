@@ -10,7 +10,8 @@ Terraform configuration for my infrastructure.
 ## Install
 
 Create `terraform.tfvars` with:
-```
+
+```bash
 # Cloudfare Account Email
 cf_email                              = "..."
 # Global API Key ( https://dash.cloudflare.com/profile/api-tokens )
@@ -27,7 +28,17 @@ AUTH0_CLIENT_SECRET                   = "..."
 ```
 
 Run:
-```
+
+```bash
 terraform init
 terraform apply
+```
+
+## Configure SDKMAN
+
+Patch SDKMAN! to automatically install Cloudflare Zero Trust certificate when installing a Java JDK.
+
+```bash
+chmod +x ./sdkman/patch.sh
+./sdkman/patch.sh
 ```
