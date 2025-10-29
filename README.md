@@ -1,11 +1,13 @@
 # Infrastructure
 
+Cloudflare Access secured with Auth0 and PassKey only login
+
 ## Description
 
 Terraform configuration for my infrastructure.
-
-- PC connected to Cloudflare tunnel accessible at [meerkat.patkub.vip](https://meerkat.patkub.vip/).
-- Access to [meerkat.patkub.vip](https://meerkat.patkub.vip/) is secured via Auth0 OIDC Client.
+- Cloudflare Access is secured with Auth0
+- Auth0 Action and Forms enforce login with PassKey only
+- A Cloudflare tunnel accessible via SSH at [meerkat.patkub.vip](https://meerkat.patkub.vip/)
 
 ## Cloud Configuration
 
