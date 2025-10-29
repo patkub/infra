@@ -1,19 +1,19 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
+# Dependabot documentation:
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
 updates:
   # Configuration for npm (Node.js) dependencies
   - package-ecosystem: "npm"
-    # Location of your package.json and pnpm-lock.yaml
-    directory: "/" # Location of your package.json and package-lock.json
+    # Location of package.json and pnpm-lock.yaml
+    directory: "/"
     schedule:
       interval: "weekly" # Check for updates weekly
-    labels:
-      - "dependencies"
-      - "npm"
+    # Create a single PR for all dependencies
+    groups:
+      dependencies:
+        patterns:
+          - "*"
 
   # Configuration for GitHub Actions
   - package-ecosystem: "github-actions"
@@ -21,6 +21,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly" # Check for updates weekly
-    labels:
-      - "dependencies"
-      - "github-actions"
+    # Create a single PR for all dependencies
+    groups:
+      dependencies:
+        patterns:
+          - "*"
