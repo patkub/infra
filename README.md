@@ -69,3 +69,23 @@ chmod +x ./src/client/install.sh
 ### Individual Scripts
 - `./src/client/ssh/ssh.sh` - Adds SSH host for meerkat.
 - `./src/client/sdkman/patch.sh` - Patches SDKMAN!
+
+### Unit Testing
+
+Install dependencies
+
+```bash
+pnpm install
+```
+
+Run unit tests
+
+```bash
+pnpm test
+```
+
+Automatically re-run tests when files change
+
+```bash
+pnpm test:watch
+```
