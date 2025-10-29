@@ -119,6 +119,15 @@ resource "auth0_action" "passwordless" {
     id      = "post-login"
     version = "v3"
   }
+
+  secrets {
+    name  = "ENFORCE_FORM_ID"
+    value = auth0_form.must_login_with_passkeys.id
+  }
+  secrets {
+    name  = "NOTIFY_FORM_ID"
+    value = auth0_form.notify_about_passkey_policy.id
+  }
 }
 
 # Post-Login Action Triggers

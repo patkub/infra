@@ -29,7 +29,7 @@ exports.onExecutePostLogin = async (event, api) => {
 
   // Notify user about passkey policy, but allow login during grace period
   if (logins_left >= 0) {
-    api.prompt.render('ap_jeyXLoedX4SATHrNzmkNYk', {
+    api.prompt.render(event.secerts.NOTIFY_FORM_ID, {
       vars: {
         logins_left: logins_left,
       }
@@ -39,7 +39,7 @@ exports.onExecutePostLogin = async (event, api) => {
 
   // Exceeded login grace period. Notify user that they must use a passkey.
   if (!usedPassKey) {
-    api.prompt.render('ap_ei8cfroGBsM2gWPVKKy34K');
+    api.prompt.render(event.secrets.ENFORCE_FORM_ID);
     return;
   }
 };
