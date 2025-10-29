@@ -11,17 +11,16 @@
     "type": "git",
     "url": "git+https://github.com/patkub/infra.git"
   },
-  "license": "ISC",
-  "author": "",
   "type": "commonjs",
   "main": "passwordless.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "test": "vitest run --silent --coverage",
     "test:watch": "vitest --silent"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.15.0",
   "devDependencies": {
     "@vitest/coverage-v8": "^4.0.5",
     "vitest": "^4.0.5"
