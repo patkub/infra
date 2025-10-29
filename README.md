@@ -25,6 +25,9 @@ cloudflare_access_oidc_client_secret  = "..."
 AUTH0_DOMAIN                          = "..."
 AUTH0_CLIENT_ID                       = "..."
 AUTH0_CLIENT_SECRET                   = "..."
+
+# Passkey Policy Settings
+MAX_LOGINS_WITHOUT_PASSKEY            = "3"
 ```
 
 Run:

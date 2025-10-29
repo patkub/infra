@@ -1,0 +1,28 @@
+{
+  "name": "infra",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Terraform configuration for my infrastructure.",
+  "homepage": "https://github.com/patkub/infra#readme",
+  "bugs": {
+    "url": "https://github.com/patkub/infra/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patkub/infra.git"
+  },
+  "type": "commonjs",
+  "main": "passwordless.js",
+  "scripts": {
+    "test": "vitest run --silent --coverage",
+    "test:watch": "vitest --silent"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.15.0",
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.5",
+    "vitest": "^4.0.5"
+  }
+}

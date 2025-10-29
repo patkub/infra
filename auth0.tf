@@ -64,3 +64,82 @@ resource "auth0_client" "cloudflare_access" {
     token_lifetime               = 31557600
   }
 }
+
+
+# Identifier-First
+resource "auth0_prompt" "prompts" {
+  identifier_first               = true
+  universal_login_experience     = "new"
+  webauthn_platform_first_factor = false
+}
+
+# Form to enforce PassKey login policy
+resource "auth0_form" "must_login_with_passkeys" {
+  ending       = "{\"coordinates\":{\"x\":1250,\"y\":0},\"resume_flow\":true}"
+  name         = "Must Login with PassKeys"
+  nodes        = "[{\"alias\":\"New step\",\"config\":{\"components\":[{\"category\":\"BLOCK\",\"config\":{\"content\":\"\\u003ch2 style=\\\"text-align:center;\\\"\\u003e\\u003cstrong\\u003e{{ t('must_use_passkeys') }}\\u003c/strong\\u003e\\u003c/h2\\u003e\"},\"id\":\"rich_text_lGGp\",\"type\":\"RICH_TEXT\"},{\"category\":\"BLOCK\",\"config\":{\"text\":\"Continue\"},\"id\":\"next_button_EeLt\",\"type\":\"NEXT_BUTTON\"},{\"category\":\"BLOCK\",\"id\":\"divider_xFa3\",\"type\":\"DIVIDER\"}],\"next_node\":\"$ending\"},\"coordinates\":{\"x\":500,\"y\":0},\"id\":\"step_3q2e\",\"type\":\"STEP\"}]"
+  start        = "{\"coordinates\":{\"x\":0,\"y\":0},\"next_node\":\"step_3q2e\"}"
+  style        = null
+  translations = null
+  languages {
+    default = null
+    primary = "en"
+  }
+  messages {
+    custom = "{\"must_use_passkeys\":\"Please login with PassKeys\"}"
+    errors = null
+  }
+}
+
+# Form to notify about PassKey login policy
+resource "auth0_form" "notify_about_passkey_policy" {
+  ending       = "{\"coordinates\":{\"x\":1250,\"y\":0},\"resume_flow\":true}"
+  name         = "Notify about PassKey Policy"
+  nodes        = "[{\"alias\":\"New step\",\"config\":{\"components\":[{\"category\":\"BLOCK\",\"config\":{\"content\":\"\\u003ch2 style=\\\"text-align:center;\\\"\\u003e\\u003cstrong\\u003e{{ t('must_use_passkeys') }}\\u003c/strong\\u003e\\u003c/h2\\u003e\\u003ch2 style=\\\"text-align:center;\\\"\\u003e\\u003cstrong\\u003e{{ t('logins_left1') }} {{vars.logins_left}}  {{ t('logins_left2')}}\\u003c/strong\\u003e\\u003c/h2\\u003e\"},\"id\":\"rich_text_lGGp\",\"type\":\"RICH_TEXT\"},{\"category\":\"BLOCK\",\"config\":{\"text\":\"Continue\"},\"id\":\"next_button_EeLt\",\"type\":\"NEXT_BUTTON\"},{\"category\":\"BLOCK\",\"id\":\"divider_xFa3\",\"type\":\"DIVIDER\"}],\"next_node\":\"$ending\"},\"coordinates\":{\"x\":500,\"y\":0},\"id\":\"step_3q2e\",\"type\":\"STEP\"}]"
+  start        = "{\"coordinates\":{\"x\":0,\"y\":0},\"next_node\":\"step_3q2e\"}"
+  style        = null
+  translations = null
+  languages {
+    default = null
+    primary = "en"
+  }
+  messages {
+    custom = "{\"logins_left1\":\"You have \",\"logins_left2\":\" logins left without PassKeys\",\"must_use_passkeys\":\"Please enroll a PassKey\"}"
+    errors = null
+  }
+}
+
+# Action to force users to authenticate with PassKeys "0c6cc5ae-5fcb-4f26-9a24-c78cbb71bcb8"
+resource "auth0_action" "passwordless" {
+  code    = file("${path.module}/passwordless.js")
+  deploy  = true
+  name    = "Passwordless"
+  runtime = "node22"
+  supported_triggers {
+    id      = "post-login"
+    version = "v3"
+  }
+
+  secrets {
+    name  = "ENFORCE_FORM_ID"
+    value = auth0_form.must_login_with_passkeys.id
+  }
+  secrets {
+    name  = "NOTIFY_FORM_ID"
+    value = auth0_form.notify_about_passkey_policy.id
+  }
+  secrets {
+    name  = "MAX_LOGINS_WITHOUT_PASSKEY"
+    value = var.MAX_LOGINS_WITHOUT_PASSKEY
+  }
+}
+
+# Post-Login Action Triggers
+resource "auth0_trigger_actions" "login_flow" {
+  trigger = "post-login"
+
+  actions {
+    id           = auth0_action.passwordless.id
+    display_name = auth0_action.passwordless.name
+  }
+}

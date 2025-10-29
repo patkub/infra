@@ -38,3 +38,8 @@ variable "AUTH0_CLIENT_SECRET" {
   type        = string
   sensitive   = true
 }
+variable "MAX_LOGINS_WITHOUT_PASSKEY" {
+  description = "Maximum number of logins without a passkey before enforcement"
+  type        = string
+  sensitive   = true
+}
