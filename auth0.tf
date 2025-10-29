@@ -128,6 +128,10 @@ resource "auth0_action" "passwordless" {
     name  = "NOTIFY_FORM_ID"
     value = auth0_form.notify_about_passkey_policy.id
   }
+  secrets {
+    name  = "MAX_LOGINS_WITHOUT_PASSKEY"
+    value = var.MAX_LOGINS_WITHOUT_PASSKEY
+  }
 }
 
 # Post-Login Action Triggers
