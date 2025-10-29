@@ -4,7 +4,7 @@ Cloudflare Access secured with Auth0 and PassKey only login
 
 ## Description
 
-Terraform configuration for my infrastructure.
+Terraform configuration for my infrastructure
 - Cloudflare Access is secured with Auth0
 - Auth0 Action and Forms enforce login with PassKey only
 - A Cloudflare tunnel accessible via SSH at [meerkat.patkub.vip](https://meerkat.patkub.vip/)
@@ -63,14 +63,14 @@ chmod +x ./src/client/install.sh
 ./src/client/install.sh
 ```
 
-- Adds SSH host for meerkat.
-- Patches SDKMAN! to automatically import Cloudflare Zero Trust certificate when installing a Java JDK.
+- Adds SSH host for meerkat
+- Patches SDKMAN! to automatically import Cloudflare Zero Trust certificate when installing a Java JDK
 
 ### Individual Scripts
-- `./src/client/ssh/ssh.sh` - Adds SSH host for meerkat.
+- `./src/client/ssh/ssh.sh` - Adds SSH host for meerkat
 - `./src/client/sdkman/patch.sh` - Patches SDKMAN!
 
-### Unit Testing
+## Unit Testing
 
 Install dependencies
 
@@ -78,14 +78,7 @@ Install dependencies
 pnpm install
 ```
 
-Run unit tests
+Run tests
+- `pnpm test` - Run unit tests
+- `pnpm test:watch` - Automatically re-run tests when files change
 
-```bash
-pnpm test
-```
-
-Automatically re-run tests when files change
-
-```bash
-pnpm test:watch
-```
