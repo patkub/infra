@@ -28,7 +28,7 @@ exports.onExecutePostLogin = async (event, api) => {
 
   // Notify user about passkey policy, but allow login during grace period.
   if (logins_left >= 0) {
-    api.prompt.render(event.secerts.NOTIFY_FORM_ID, {
+    api.prompt.render(event.secrets.NOTIFY_FORM_ID, {
       vars: {
         logins_left: logins_left,
       }
