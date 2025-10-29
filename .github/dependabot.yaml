@@ -2,27 +2,21 @@
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
-updates:
-  # Configuration for npm (Node.js) dependencies
-  - package-ecosystem: "npm"
-    # Location of package.json and pnpm-lock.yaml
-    directory: "/"
-    schedule:
-      interval: "weekly" # Check for updates weekly
-    # Create a single PR for all dependencies
-    groups:
-      dependencies:
-        patterns:
-          - "*"
 
-  # Configuration for GitHub Actions
-  - package-ecosystem: "github-actions"
-    # Location of .github/workflows files
-    directory: "/"
+multi-ecosystem-groups:
+  infrastructure:
     schedule:
-      interval: "weekly" # Check for updates weekly
-    # Create a single PR for all dependencies
-    groups:
-      dependencies:
-        patterns:
-          - "*"
+      interval: "weekly"
+
+updates:
+  # npm (Node.js) dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    patterns: ["*"]
+    multi-ecosystem-group: "infrastructure"
+  
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    patterns: ["*"]
+    multi-ecosystem-group: "infrastructure"
