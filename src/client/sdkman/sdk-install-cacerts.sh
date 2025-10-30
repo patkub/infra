@@ -16,18 +16,20 @@ function __sdk_install() {
     return $exit_code
   fi
 
+  local candidate version folder
+	candidate="$1"
+	version="$2"
+	folder="$3"
+  __sdkman_determine_version "$candidate" "$version" "$folder" || return 1
+  # now use $candidate, $VERSION and $folder as needed
+
   # only run for java installs
-  if [ "$1" != "java" ]; then
-    return 1
-  fi
-  # ensure version is specified
-  if [[ -z "$2" ]]; then
-    echo "Must specify java version to import Cloudflare Root CA"
+  if [ "$candidate" != "java" ]; then
     return 1
   fi
 
   # get java home
-  local java_home="$(sdk home "${1}" "${2}")"
+  local java_home="$(sdk home "${candidate}" "${VERSION}")"
   # ensure last command succeeded
   exit_code=$?
   if [[ $exit_code -ne 0 ]]; then
