@@ -57,9 +57,9 @@ resource "cloudflare_zero_trust_access_identity_provider" "oidc_provider" {
   config {
     client_id = data.auth0_client.cloudflare_access.client_id
     client_secret = data.auth0_client.cloudflare_access.client_secret
-    auth_url = "https://patkub.us.auth0.com/authorize"
-    token_url = "https://patkub.us.auth0.com/oauth/token"
-    certs_url = "https://patkub.us.auth0.com/.well-known/jwks.json"
+    auth_url = "https://${var.AUTH0_DOMAIN}/authorize"
+    token_url = "https://${var.AUTH0_DOMAIN}/oauth/token"
+    certs_url = "https://${var.AUTH0_DOMAIN}/.well-known/jwks.json"
     pkce_enabled = true
   }
 }
