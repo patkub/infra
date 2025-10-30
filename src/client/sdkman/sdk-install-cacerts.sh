@@ -20,6 +20,11 @@ function __sdk_install() {
   if [ "$1" != "java" ]; then
     return 1
   fi
+  # ensure version is specified
+  if [[ -z "$2" ]]; then
+    echo "Must specify java version to import Cloudflare Root CA"
+    return 1
+  fi
 
   # get java home
   local java_home="$(sdk home "${1}" "${2}")"
@@ -44,6 +49,7 @@ function __sdk_install() {
   if [[ $exit_code -ne 0 ]]; then
     return $exit_code
   fi
+  echo "Imported Cloudflare Root CA"
 
   # return status of last command
   return $exit_code
