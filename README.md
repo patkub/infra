@@ -16,12 +16,10 @@ Create `terraform.tfvars` with:
 ```bash
 # Cloudfare Account Email
 cf_email                              = "..."
-# Global API Key ( https://dash.cloudflare.com/profile/api-tokens )
+# Cloudfare Global API Key ( https://dash.cloudflare.com/profile/api-tokens )
 cf_api_key                            = "..."
-# Domain Overview API Zone ID
+# Cloudfare Domain Overview API Zone ID
 cf_zone_id                            = "..."
-# Cloudflare Access Auth0 Client Secret
-cloudflare_access_oidc_client_secret  = "..."
 
 # Auth0 M2M Application Details
 AUTH0_DOMAIN                          = "..."

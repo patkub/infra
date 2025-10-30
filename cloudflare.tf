@@ -43,6 +43,11 @@ resource "cloudflare_record" "terraform_managed_resource_db1a5473db6ba54f427b14e
 
 ### Cloudflare Access
 
+# Auth0 client for Cloudflare Access OIDC Provider
+data "auth0_client" "cloudflare_access" {
+  name = "Cloudflare Access"
+}
+
 ## Zero Trust Auth0 OIDC Provider
 resource "cloudflare_zero_trust_access_identity_provider" "oidc_provider" {
   zone_id = var.cf_zone_id
@@ -50,8 +55,8 @@ resource "cloudflare_zero_trust_access_identity_provider" "oidc_provider" {
   type = "oidc"
 
   config {
-    client_id = "8oDQ5tzUM9nUDSpsUoxssLgS4vDAVHS3"
-    client_secret = var.cloudflare_access_oidc_client_secret
+    client_id = data.auth0_client.cloudflare_access.client_id
+    client_secret = data.auth0_client.cloudflare_access.client_secret
     auth_url = "https://patkub.us.auth0.com/authorize"
     token_url = "https://patkub.us.auth0.com/oauth/token"
     certs_url = "https://patkub.us.auth0.com/.well-known/jwks.json"

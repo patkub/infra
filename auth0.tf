@@ -1,5 +1,5 @@
 
-# Auth0 OIDC Client for Cloudflare Access Integration
+# Auth0 OIDC Client for Cloudflare Access OIDC Provider
 resource "auth0_client" "cloudflare_access" {
   allowed_clients                                      = []
   allowed_logout_urls                                  = []
