@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Make scripts executable
-chmod +x ./$(dirname "$0")/**/*.sh
+chmod +x ./$(dirname "$0")/ssh/ssh.sh
+chmod +x ./$(dirname "$0")/sdkman/patch.sh
 
 # Setup SSH for Meerkat
 ./$(dirname "$0")/ssh/ssh.sh
