@@ -17,9 +17,9 @@ function __sdk_install() {
   fi
 
   local candidate version folder
-	candidate="$1"
-	version="$2"
-	folder="$3"
+  candidate="$1"
+  version="$2"
+  folder="$3"
   __sdkman_determine_version "$candidate" "$version" "$folder" || return 1
   # now use $candidate, $VERSION and $folder as needed
 
