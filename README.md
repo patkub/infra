@@ -27,6 +27,7 @@ AUTH0_CLIENT_ID                       = "..."
 AUTH0_CLIENT_SECRET                   = "..."
 
 # Passkey Policy Settings
+# Number of logins without a passkey (min: "1")
 MAX_LOGINS_WITHOUT_PASSKEY            = "3"
 ```
 
