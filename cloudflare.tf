@@ -123,7 +123,7 @@ locals {
 }
 
 # Cloudflare Gateway Policy to block Ads Categories
-resource "cloudflare_zero_trust_gateway_policy" "zt_block_ads_categories" {
+resource "cloudflare_zero_trust_gateway_policy" "zero_trust_block_ads_categories" {
   account_id = var.cf_account_id
   name       = "Block Ads"
   description = "Block Deceptive Ads, and Parked & For Sale Domains"
@@ -135,6 +135,19 @@ resource "cloudflare_zero_trust_gateway_policy" "zt_block_ads_categories" {
     local.subcategories_map["Deceptive Ads"],
     local.subcategories_map["Parked & For Sale Domains"]
   ])}})"
+}
+
+# Cloudflare Gateway Policy to Disable Logging and Enable TLS Decryption
+resource "cloudflare_zero_trust_gateway_settings" "zero_trust_gateway_settings" {
+  account_id = var.cf_account_id
+  settings = {
+    activity_log = {
+      enabled = false
+    }
+    tls_decrypt = {
+      enabled = true
+    }
+  }
 }
 
 ### End Cloudflare Gateway
