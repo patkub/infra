@@ -40,7 +40,7 @@ terraform apply
 ## Server Configuration
 
 Follow
-- [SSH with Access for Infrastructure (recommended)](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/use-cases/ssh/ssh-infrastructure-access/)
+- [Short-lived certificates (legacy)](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/non-http/short-lived-certificates-legacy/)
 - [Connect to SSH with client-side cloudflared (legacy)](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/use-cases/ssh/ssh-cloudflared-authentication/)
 
 Configure server with:
@@ -55,6 +55,9 @@ chmod +x ./src/server/install.sh
 
 
 ## Client Configuration
+
+Reference: [Connect to SSH with client-side cloudflared (legacy)](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/use-cases/ssh/ssh-cloudflared-authentication/)
+
 
 Configure client devices with:
 
