@@ -82,10 +82,10 @@ pnpm install
 ```
 
 Lint
-
-```bash
-pnpm lint
-```
+- `pnpm lint` - Lint with biome and apply changes
+- `pnpm lint:check` - Check linting with biome
+- `pnpm format` - Format with biome and apply changes
+- `pnpm format:check` - Check formatting with biome
 
 Run tests
 - `pnpm test` - Run unit tests
