@@ -1,35 +1,35 @@
 {
-	"name": "infra",
-	"version": "1.0.0",
-	"private": true,
-	"description": "Terraform configuration for my infrastructure.",
-	"homepage": "https://github.com/patkub/infra#readme",
-	"bugs": {
-		"url": "https://github.com/patkub/infra/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/patkub/infra.git"
-	},
-	"type": "module",
-	"main": "passwordless.js",
-	"scripts": {
-		"lint": "biome lint --write --unsafe",
-		"lint:check": "biome lint",
-		"format": "biome format --write",
-		"format:check": "biome format",
-		"test": "vitest run --silent --coverage",
-		"test:watch": "vitest --silent"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"packageManager": "pnpm@10.15.0",
-	"devDependencies": {
-		"@biomejs/biome": "2.3.2",
-		"@vitest/coverage-v8": "^4.0.5",
-		"eslint": "^9.38.0",
-		"globals": "^16.4.0",
-		"vitest": "^4.0.5"
-	}
+  "name": "infra",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Terraform configuration for my infrastructure.",
+  "homepage": "https://github.com/patkub/infra#readme",
+  "bugs": {
+    "url": "https://github.com/patkub/infra/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patkub/infra.git"
+  },
+  "type": "module",
+  "main": "passwordless.js",
+  "scripts": {
+    "lint": "biome lint --write --unsafe",
+    "lint:check": "biome lint",
+    "format": "biome format --write",
+    "format:check": "biome format",
+    "test": "vitest run --silent --coverage",
+    "test:watch": "vitest --silent"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.15.0",
+  "devDependencies": {
+    "@biomejs/biome": "2.3.2",
+    "@vitest/coverage-v8": "^4.0.5",
+    "eslint": "^9.38.0",
+    "globals": "^16.4.0",
+    "vitest": "^4.0.5"
+  }
 }

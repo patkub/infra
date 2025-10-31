@@ -1,8 +1,8 @@
 // Check if a passkey was used to authenticate.
 function loginUsedPasskey(event) {
-	return event.authentication?.methods.some(
-		(method) => method.name === "passkey",
-	);
+  return event.authentication?.methods.some(
+    (method) => method.name === "passkey",
+  );
 }
 
 /**
@@ -14,34 +14,34 @@ function loginUsedPasskey(event) {
  * @param {PostLoginAPI} api - Interface whose methods can be used to change the behavior of the login.
  */
 exports.onExecutePostLogin = async (event, api) => {
-	// Check if a passkey was used to authenticate.
-	const usedPassKey = loginUsedPasskey(event);
+  // Check if a passkey was used to authenticate.
+  const usedPassKey = loginUsedPasskey(event);
 
-	// Continue login if a passkey was used.
-	if (usedPassKey) {
-		return;
-	}
+  // Continue login if a passkey was used.
+  if (usedPassKey) {
+    return;
+  }
 
-	// Number of logins left before enforcing passkey policy.
-	// event.stats.logins_count starts at 1 for the first login
-	const logins_left = Math.max(
-		-1,
-		parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10) -
-			event.stats.logins_count,
-	);
+  // Number of logins left before enforcing passkey policy.
+  // event.stats.logins_count starts at 1 for the first login
+  const logins_left = Math.max(
+    -1,
+    parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10) -
+      event.stats.logins_count,
+  );
 
-	// Notify user about passkey policy, but allow login during grace period.
-	if (logins_left >= 0) {
-		api.prompt.render(event.secrets.NOTIFY_FORM_ID, {
-			vars: {
-				logins_left: logins_left,
-			},
-		});
-		return;
-	}
+  // Notify user about passkey policy, but allow login during grace period.
+  if (logins_left >= 0) {
+    api.prompt.render(event.secrets.NOTIFY_FORM_ID, {
+      vars: {
+        logins_left: logins_left,
+      },
+    });
+    return;
+  }
 
-	// Exceeded login grace period. Notify user that they must use a passkey.
-	api.prompt.render(event.secrets.ENFORCE_FORM_ID);
+  // Exceeded login grace period. Notify user that they must use a passkey.
+  api.prompt.render(event.secrets.ENFORCE_FORM_ID);
 };
 
 /**
@@ -54,20 +54,20 @@ exports.onExecutePostLogin = async (event, api) => {
  * @param {PostLoginAPI} api - Interface whose methods can be used to change the behavior of the login.
  */
 exports.onContinuePostLogin = async (event, api) => {
-	// Skip passkey policy during grace period.
-	if (
-		event.stats.logins_count <=
-		parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10)
-	) {
-		return;
-	}
+  // Skip passkey policy during grace period.
+  if (
+    event.stats.logins_count <=
+    parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10)
+  ) {
+    return;
+  }
 
-	// Check if a passkey was used to authenticate.
-	const usedPassKey = loginUsedPasskey(event);
+  // Check if a passkey was used to authenticate.
+  const usedPassKey = loginUsedPasskey(event);
 
-	// Deny login if a passkey was not used.
-	if (!usedPassKey) {
-		api.access.deny("Must login with PassKey");
-		return;
-	}
+  // Deny login if a passkey was not used.
+  if (!usedPassKey) {
+    api.access.deny("Must login with PassKey");
+    return;
+  }
 };
