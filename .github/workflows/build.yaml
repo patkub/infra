@@ -31,4 +31,23 @@ jobs:
       - name: Run tests
         run: pnpm test
 
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.x.x # Specify your desired Terraform version
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: ./
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
+        working-directory: ./
