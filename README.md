@@ -39,7 +39,9 @@ terraform apply
 
 ## Server Configuration
 
-Follow [SSH with Access for Infrastructure (recommended)](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/use-cases/ssh/ssh-infrastructure-access/)
+Follow
+- [SSH with Access for Infrastructure (recommended)](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/use-cases/ssh/ssh-infrastructure-access/)
+- [Connect to SSH with client-side cloudflared (legacy)](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/use-cases/ssh/ssh-cloudflared-authentication/)
 
 Configure server with:
 
@@ -61,7 +63,7 @@ chmod +x ./src/client/install.sh
 ./src/client/install.sh
 ```
 
-- Adds SSH host for meerkat
+- Adds client-side cloudflared SSH host for meerkat
 - Patches SDKMAN! to automatically import Cloudflare Zero Trust certificate when installing a Java JDK
 
 ### Individual Scripts

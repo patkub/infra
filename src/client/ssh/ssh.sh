@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Setup SSH for Meerkat
+# Setup client-side cloudflared SSH host for Meerkat
 if ! grep -q -x 'Host meerkat' "$HOME/.ssh/config"; then
   echo "Adding SSH config for Meerkat to $HOME/.ssh/config"
   cat << EOF >> "$HOME/.ssh/config"
