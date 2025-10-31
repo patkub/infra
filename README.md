@@ -73,12 +73,18 @@ chmod +x ./src/client/install.sh
 - `./src/client/ssh/ssh.sh` - Adds SSH host for meerkat
 - `./src/client/sdkman/patch.sh` - Patches SDKMAN!
 
-## Unit Testing
+## Dev Setup
 
 Install dependencies
 
 ```bash
 pnpm install
+```
+
+Lint
+
+```bash
+pnpm lint
 ```
 
 Run tests
