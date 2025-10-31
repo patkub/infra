@@ -67,7 +67,10 @@ exports.onContinuePostLogin = async (event, api) => {
 
   // Deny login if a passkey was not used.
   if (!usedPassKey) {
-    api.access.deny("Must login with PassKey");
+    // Reject the current transaction, revoke the session, and delete associated refresh tokens.
+    api.session.revoke("Must login with PassKey", {
+      preserveRefreshTokens: false,
+    });
     return;
   }
 };

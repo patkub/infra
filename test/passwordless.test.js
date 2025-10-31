@@ -26,11 +26,11 @@ describe("Passwordless", () => {
     };
 
     api = {
-      access: {
-        deny: vi.fn(),
-      },
       prompt: {
         render: vi.fn(),
+      },
+      session: {
+        revoke: vi.fn(),
       },
     };
   });
@@ -49,7 +49,7 @@ describe("Passwordless", () => {
 
     // Assert
     expect(api.prompt.render).not.toHaveBeenCalled();
-    expect(api.access.deny).not.toHaveBeenCalled();
+    expect(api.session.revoke).not.toHaveBeenCalled();
   });
 
   it("Should notify user about PassKey policy, but allow login without PassKey during grace period", async () => {
@@ -78,7 +78,7 @@ describe("Passwordless", () => {
         },
       },
     );
-    expect(api.access.deny).not.toHaveBeenCalled();
+    expect(api.session.revoke).not.toHaveBeenCalled();
   });
 
   it("Should deny login without PassKey after grace period", async () => {
@@ -111,7 +111,9 @@ describe("Passwordless", () => {
     expect(api.prompt.render).toHaveBeenCalledWith(
       event.secrets.ENFORCE_FORM_ID,
     );
-    expect(api.access.deny).toHaveBeenCalled();
+    expect(api.session.revoke).toHaveBeenCalledWith("Must login with PassKey", {
+      preserveRefreshTokens: false,
+    });
   });
 
   it("Should not deny login after grace period if a PassKey was used", async () => {
@@ -135,6 +137,6 @@ describe("Passwordless", () => {
     expect(api.prompt.render).not.toHaveBeenCalledWith(
       event.secrets.ENFORCE_FORM_ID,
     );
-    expect(api.access.deny).not.toHaveBeenCalled();
+    expect(api.session.revoke).not.toHaveBeenCalled();
   });
 });
