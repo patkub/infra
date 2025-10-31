@@ -12,6 +12,12 @@ variable "cf_api_key" {
   sensitive   = true
 }
 
+variable "cf_account_id" {
+  description = "Cloudflare Account ID"
+  type        = string
+  sensitive   = true
+}
+
 # Cloudfare Domain Overview API Zone ID
 variable "cf_zone_id" {
   description = "Cloudflare Zone ID"
