@@ -12,8 +12,9 @@
  * @returns {Boolean} True if a passkey was used, false otherwise.
  */
 function loginUsedPasskey(event) {
-  return event.authentication?.methods.some(
-    (method) => method.name === "passkey",
+  return (
+    event.authentication?.methods.some((method) => method.name === "passkey") ||
+    false
   );
 }
 
@@ -21,8 +22,7 @@ function loginUsedPasskey(event) {
  * Get the maximum number of allowed logins without a passkey, ensuring at least 1.
  *
  * @param {Event} event - Details about the user and the context in which they are logging in.
- * @param {String} event.secrets.MAX_LOGINS_WITHOUT_PASSKEY - Maximum number of logins allowed without a passkey (minimum 1).
- * @returns {Integer} Maximum number of allowed logins without a passkey (min: 1).
+ * @returns {Number} Maximum number of allowed logins without a passkey (min: 1).
  */
 function getMaxLoginsWithoutPasskey(event) {
   return Math.max(1, parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10));
@@ -32,7 +32,7 @@ function getMaxLoginsWithoutPasskey(event) {
  * Get the number of logins left before enforcing passkey policy.
  *
  * @param {Event} event - Details about the user and the context in which they are logging in.
- * @returns {Integer} Number of logins left.
+ * @returns {Number} Number of logins left.
  */
 function getLoginsLeft(event) {
   const maxLoginsWithoutPasskey = getMaxLoginsWithoutPasskey(event);
@@ -45,9 +45,6 @@ function getLoginsLeft(event) {
  * Handler that will be called during the execution of a PostLogin flow.
  *
  * @param {Event} event - Details about the user and the context in which they are logging in.
- * @param {String} event.secrets.MAX_LOGINS_WITHOUT_PASSKEY - Maximum number of logins allowed without a passkey (minimum 1).
- * @param {String} event.secrets.NOTIFY_FORM_ID - ID of the form to notify users about the passkey policy during the grace period.
- * @param {String} event.secrets.ENFORCE_FORM_ID - ID of the form to enforce passkey authentication after the grace period.
  * @param {PostLoginAPI} api - Interface whose methods can be used to change the behavior of the login.
  */
 exports.onExecutePostLogin = async (event, api) => {
