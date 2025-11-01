@@ -1,4 +1,14 @@
 
+# Required Providers
+terraform {
+  required_providers {
+    auth0 = {
+      source  = "auth0/auth0"
+      version = ">= 1.0.0"
+    }
+  }
+}
+
 # Auth0 OIDC Client for Cloudflare Access OIDC Provider
 resource "auth0_client" "cloudflare_access" {
   allowed_clients                                      = []

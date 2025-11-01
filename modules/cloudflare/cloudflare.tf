@@ -1,5 +1,19 @@
 ### patkub.vip - Cloudflare DNS Records
 
+# Required Providers
+terraform {
+  required_providers {
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 5"
+    }
+    auth0 = {
+      source  = "auth0/auth0"
+      version = ">= 1.0.0"
+    }
+  }
+}
+
 ## Email Security Records
 resource "cloudflare_dns_record" "cloudflare_dns_record_1" {
   content = "\"v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s;\""

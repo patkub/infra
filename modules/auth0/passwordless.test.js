@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
-import { onExecutePostLogin, onContinuePostLogin } from "../passwordless.js";
+import { onExecutePostLogin, onContinuePostLogin } from "./passwordless.js";
 
 describe("Passwordless", () => {
   let event, api;

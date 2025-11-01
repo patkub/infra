@@ -12,7 +12,6 @@
     "url": "git+https://github.com/patkub/infra.git"
   },
   "type": "module",
-  "main": "passwordless.js",
   "scripts": {
     "lint": "biome lint --write --unsafe",
     "lint:check": "biome lint",

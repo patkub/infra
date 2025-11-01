@@ -15,20 +15,22 @@ Create `terraform.tfvars` with:
 
 ```bash
 # Cloudfare Account Email
-cf_email                              = "..."
+cf_email                            = "..."
 # Cloudfare Global API Key ( https://dash.cloudflare.com/profile/api-tokens )
-cf_api_key                            = "..."
+cf_api_key                          = "..."
+# Cloudfare Domain Overview Account ID
+cf_account_id                       = "..."
 # Cloudfare Domain Overview API Zone ID
-cf_zone_id                            = "..."
+cf_zone_id                          = "..."
 
 # Auth0 M2M Application Details
-AUTH0_DOMAIN                          = "..."
-AUTH0_CLIENT_ID                       = "..."
-AUTH0_CLIENT_SECRET                   = "..."
+AUTH0_DOMAIN                        = "..."
+AUTH0_CLIENT_ID                     = "..."
+AUTH0_CLIENT_SECRET                 = "..."
 
 # Passkey Policy Settings
 # Number of logins without a passkey (min: "1")
-MAX_LOGINS_WITHOUT_PASSKEY            = "3"
+MAX_LOGINS_WITHOUT_PASSKEY          = "3"
 ```
 
 Run:
@@ -47,12 +49,12 @@ Follow
 Configure server with:
 
 ```bash
-chmod +x ./src/server/install.sh
-./src/server/install.sh
+chmod +x ./scripts/server/install.sh
+./scripts/server/install.sh
 ```
 
 ### Individual Scripts
-- `./src/server/sshd/sshd.sh` - Setup sshd for Meerkat
+- `./scripts/server/sshd/sshd.sh` - Setup sshd for Meerkat
 
 
 ## Client Configuration
@@ -63,16 +65,16 @@ Reference: [Connect to SSH with client-side cloudflared (legacy)](https://develo
 Configure client devices with:
 
 ```bash
-chmod +x ./src/client/install.sh
-./src/client/install.sh
+chmod +x ./scripts/client/install.sh
+./scripts/client/install.sh
 ```
 
 - Adds client-side cloudflared SSH host for meerkat
 - Patches SDKMAN! to automatically import Cloudflare Zero Trust certificate when installing a Java JDK
 
 ### Individual Scripts
-- `./src/client/ssh/ssh.sh` - Adds SSH host for meerkat
-- `./src/client/sdkman/patch.sh` - Patches SDKMAN!
+- `./scripts/client/ssh/ssh.sh` - Adds SSH host for meerkat
+- `./scripts/client/sdkman/patch.sh` - Patches SDKMAN!
 
 ## Dev Setup
 
