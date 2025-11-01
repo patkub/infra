@@ -1,5 +1,3 @@
-### patkub.vip - Cloudflare DNS Records
-
 # Required Providers
 terraform {
   required_providers {
@@ -13,6 +11,8 @@ terraform {
     }
   }
 }
+
+### patkub.vip - Cloudflare DNS Records
 
 ## Email Security Records
 resource "cloudflare_dns_record" "cloudflare_dns_record_1" {
