@@ -110,6 +110,8 @@ resource "cloudflare_zero_trust_access_application" "meerkat_zero_trust_access_a
   auto_redirect_to_identity   = true
   # WARP authentication identity
   allow_authenticate_via_warp = false
+  # Enables automatic authentication through cloudflared.
+  skip_interstitial = true
 
   # Allow epicpatka
   policies = [{
