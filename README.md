@@ -42,9 +42,7 @@ terraform apply
 
 ## Server Configuration
 
-Follow
-- [Short-lived certificates (legacy)](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/non-http/short-lived-certificates-legacy/)
-- [Connect to SSH with client-side cloudflared (legacy)](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/use-cases/ssh/ssh-cloudflared-authentication/)
+Follow: [Short-lived certificates (legacy)](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/non-http/short-lived-certificates-legacy/)
 
 Configure server with:
 
