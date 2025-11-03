@@ -29,17 +29,6 @@ function getMaxLoginsWithoutPasskey(event) {
 }
 
 /**
- * Get the number of logins left before enforcing passkey policy.
- *
- * @param {Event} event - Details about the user and the context in which they are logging in.
- * @returns {Number} Number of logins left.
- */
-function getLoginsLeft(event) {
-  const maxLoginsWithoutPasskey = getMaxLoginsWithoutPasskey(event);
-  return maxLoginsWithoutPasskey - event.stats.logins_count;
-}
-
-/**
  * Force users to authenticate with PassKeys only.
  *
  * Handler that will be called during the execution of a PostLogin flow.
@@ -54,11 +43,12 @@ exports.onExecutePostLogin = async (event, api) => {
     return;
   }
 
-  // Number of logins left before enforcing passkey policy.
-  const logins_left = getLoginsLeft(event);
-
-  if (logins_left >= 0) {
+  // Number of logins allowed before enforcing passkey policy.
+  const maxLoginsWithoutPasskey = getMaxLoginsWithoutPasskey(event);
+  if (event.stats.logins_count <= maxLoginsWithoutPasskey) {
     // Still within grace period. Notify user about passkey policy.
+    // Number of logins left before enforcing passkey policy.
+    const logins_left = maxLoginsWithoutPasskey - event.stats.logins_count;
     api.prompt.render(event.secrets.NOTIFY_FORM_ID, {
       vars: {
         logins_left: logins_left,
@@ -87,11 +77,10 @@ exports.onContinuePostLogin = async (event, api) => {
     return;
   }
 
-  // Number of logins left before enforcing passkey policy.
-  const logins_left = getLoginsLeft(event);
-
-  // Skip passkey policy during grace period.
-  if (logins_left >= 0) {
+  // Number of logins allowed before enforcing passkey policy.
+  const maxLoginsWithoutPasskey = getMaxLoginsWithoutPasskey(event);
+  if (event.stats.logins_count <= maxLoginsWithoutPasskey) {
+    // Skip passkey policy during grace period.
     return;
   }
 
