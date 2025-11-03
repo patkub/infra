@@ -25,7 +25,7 @@ resource "auth0_client" "cloudflare_access" {
   description                                          = null
   encryption_key                                       = null
   form_template                                        = null
-  grant_types                                          = ["authorization_code", "implicit", "refresh_token", "client_credentials"]
+  grant_types                                          = ["authorization_code", "refresh_token"]
   initiate_login_uri                                   = null
   is_first_party                                       = true
   is_token_endpoint_ip_header_trusted                  = false
