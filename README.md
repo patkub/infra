@@ -14,13 +14,13 @@ Terraform configuration for my infrastructure
 Create `terraform.tfvars` with:
 
 ```bash
-# Cloudfare Account Email
+# Cloudflare Account Email
 cf_email                            = "..."
-# Cloudfare Global API Key ( https://dash.cloudflare.com/profile/api-tokens )
+# Cloudflare Global API Key ( https://dash.cloudflare.com/profile/api-tokens )
 cf_api_key                          = "..."
-# Cloudfare Domain Overview Account ID
+# Cloudflare Domain Overview Account ID
 cf_account_id                       = "..."
-# Cloudfare Domain Overview API Zone ID
+# Cloudflare Domain Overview API Zone ID
 cf_zone_id                          = "..."
 
 # Auth0 M2M Application Details

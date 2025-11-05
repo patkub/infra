@@ -2,9 +2,9 @@
 module "cloudflare" {
   source = "./modules/cloudflare"
 
-  # Cloudfare Account ID
+  # Cloudflare Account ID
   cf_account_id = var.cf_account_id
-  # Cloudfare Domain Overview API Zone ID
+  # Cloudflare Domain Overview API Zone ID
   cf_zone_id = var.cf_zone_id
 
   # Auth0 Domain

@@ -1,11 +1,11 @@
-# Cloudfare Account Email
+# Cloudflare Account Email
 variable "cf_email" {
   description = "Cloudflare Account Email"
   type        = string
   sensitive   = true
 }
 
-# Cloudfare Global API Key ( https://dash.cloudflare.com/profile/api-tokens )
+# Cloudflare Global API Key ( https://dash.cloudflare.com/profile/api-tokens )
 variable "cf_api_key" {
   description = "Cloudflare API Key"
   type        = string
@@ -18,7 +18,7 @@ variable "cf_account_id" {
   sensitive   = true
 }
 
-# Cloudfare Domain Overview API Zone ID
+# Cloudflare Domain Overview API Zone ID
 variable "cf_zone_id" {
   description = "Cloudflare Zone ID"
   type        = string

@@ -1,11 +1,11 @@
-# Cloudfare Domain Overview Account ID
+# Cloudflare Domain Overview Account ID
 variable "cf_account_id" {
   description = "Cloudflare Account ID"
   type        = string
   sensitive   = true
 }
 
-# Cloudfare Domain Overview API Zone ID
+# Cloudflare Domain Overview API Zone ID
 variable "cf_zone_id" {
   description = "Cloudflare Zone ID"
   type        = string

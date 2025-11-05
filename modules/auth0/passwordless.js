@@ -62,7 +62,7 @@ exports.onExecutePostLogin = async (event, api) => {
 };
 
 /**
- * Deny login after notificaiton form if user didn't authenticate with a passkey
+ * Deny login after notification form if user didn't authenticate with a passkey
  *
  * Handler that will be invoked when this action is resuming after an external redirect. If your
  * onExecutePostLogin function does not perform a redirect, this function can be safely ignored.
