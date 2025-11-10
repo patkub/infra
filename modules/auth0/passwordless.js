@@ -5,6 +5,8 @@
  * After exceeding this limit, users must authenticate using a passkey.
  */
 
+/** @import {Event, PostLoginAPI} from "@auth0/actions/post-login/v3" */
+
 /**
  * Check if a passkey was used to authenticate.
  *
