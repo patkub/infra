@@ -1,11 +1,11 @@
-/** @import {Event, PostLoginAPI} from "@auth0/actions/post-login/v3" */
-
 /**
  * Force users to authenticate with PassKeys only.
  *
  * This action allows users to log in without a passkey for a limited number of times.
  * After exceeding this limit, users must authenticate using a passkey.
  */
+
+/** @import {Event, PostLoginAPI} from "@auth0/actions/post-login/v3" */
 
 /**
  * Check if a passkey was used to authenticate.
