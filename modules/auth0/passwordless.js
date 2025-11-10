@@ -1,3 +1,5 @@
+/** @import {Event, PostLoginAPI} from "@auth0/actions/post-login/v3" */
+
 /**
  * Force users to authenticate with PassKeys only.
  *
