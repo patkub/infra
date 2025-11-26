@@ -87,6 +87,8 @@ exports.onContinuePostLogin = async (event, api) => {
   }
 
   // Exceeded login grace period.
+  // Deny access.
+  api.access.deny("Must login with PassKey");
   // Reject the current transaction, revoke the session, and delete associated refresh tokens.
   api.session.revoke("Must login with PassKey", {
     preserveRefreshTokens: false,

@@ -26,6 +26,9 @@ describe("Passwordless", () => {
     };
 
     api = {
+      access: {
+        deny: vi.fn(),
+      },
       prompt: {
         render: vi.fn(),
       },
@@ -51,6 +54,7 @@ describe("Passwordless", () => {
     // Did not notify the user.
     expect(api.prompt.render).not.toHaveBeenCalled();
     // Allowed the current transaction.
+    expect(api.access.deny).not.toHaveBeenCalled();
     expect(api.session.revoke).not.toHaveBeenCalled();
   });
 
@@ -83,6 +87,7 @@ describe("Passwordless", () => {
       },
     );
     // Allowed the current transaction.
+    expect(api.access.deny).not.toHaveBeenCalled();
     expect(api.session.revoke).not.toHaveBeenCalled();
   });
 
@@ -104,6 +109,7 @@ describe("Passwordless", () => {
       event.secrets.ENFORCE_FORM_ID,
     );
     // Rejected the current transaction, revoked the session, and deleted associated refresh tokens.
+    expect(api.access.deny).toHaveBeenCalledWith("Must login with PassKey");
     expect(api.session.revoke).toHaveBeenCalledWith("Must login with PassKey", {
       preserveRefreshTokens: false,
     });
@@ -122,6 +128,7 @@ describe("Passwordless", () => {
     // Did not notify the user.
     expect(api.prompt.render).not.toHaveBeenCalled();
     // Allowed the current transaction.
+    expect(api.access.deny).not.toHaveBeenCalled();
     expect(api.session.revoke).not.toHaveBeenCalled();
   });
 
@@ -148,6 +155,7 @@ describe("Passwordless", () => {
       },
     );
     // Allowed the current transaction.
+    expect(api.access.deny).not.toHaveBeenCalled();
     expect(api.session.revoke).not.toHaveBeenCalled();
   });
 });
