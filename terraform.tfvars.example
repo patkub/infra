@@ -1,0 +1,17 @@
+# Cloudflare Account Email
+cf_email                            = "..."
+# Cloudflare Global API Key ( https://dash.cloudflare.com/profile/api-tokens )
+cf_api_key                          = "..."
+# Cloudflare Domain Overview Account ID
+cf_account_id                       = "..."
+# Cloudflare Domain Overview API Zone ID
+cf_zone_id                          = "..."
+
+# Auth0 M2M Application Details
+AUTH0_DOMAIN                        = "..."
+AUTH0_CLIENT_ID                     = "..."
+AUTH0_CLIENT_SECRET                 = "..."
+
+# Passkey Policy Settings
+# Number of logins without a passkey (min: "1")
+MAX_LOGINS_WITHOUT_PASSKEY          = "3"

@@ -11,6 +11,8 @@ Terraform configuration for my infrastructure
 
 ## Cloud Configuration
 
+Reference `terraform.tfvars.example`.
+
 Create `terraform.tfvars` with:
 
 ```bash
