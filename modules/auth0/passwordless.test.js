@@ -69,11 +69,9 @@ describe("Passwordless", () => {
     await onContinuePostLogin(event, api);
 
     // MAX_LOGINS_WITHOUT_PASSKEY is 3, logins_count is 1, so 2 logins left
-    const logins_left = Math.max(
-      1,
-      parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10) -
-        event.stats.logins_count,
-    );
+    const logins_left =
+      Math.max(1, parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10)) -
+      event.stats.logins_count;
 
     // Assert
     // Notified user that they have 2 logins left without a passkey.
