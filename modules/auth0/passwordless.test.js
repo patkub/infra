@@ -2,6 +2,16 @@ import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
 import { onExecutePostLogin, onContinuePostLogin } from "./passwordless.js";
 
+/**
+ * Get the maximum number of allowed logins without a passkey, ensuring at least 1.
+ *
+ * @param {Event} event - Details about the user and the context in which they are logging in.
+ * @returns {Number} Maximum number of allowed logins without a passkey (min: 1).
+ */
+function getMaxLoginsWithoutPasskey(event) {
+  return Math.max(1, parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10));
+}
+
 describe("Passwordless", () => {
   let event, api;
 
@@ -70,8 +80,7 @@ describe("Passwordless", () => {
 
     // MAX_LOGINS_WITHOUT_PASSKEY is 3, logins_count is 1, so 2 logins left
     const logins_left =
-      Math.max(1, parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10)) -
-      event.stats.logins_count;
+      getMaxLoginsWithoutPasskey(event) - event.stats.logins_count;
 
     // Assert
     // Notified user that they have 2 logins left without a passkey.
@@ -91,8 +100,7 @@ describe("Passwordless", () => {
 
   it("Should deny login without a PassKey after grace period", async () => {
     // Prepare
-    event.stats.logins_count =
-      parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10) + 1;
+    event.stats.logins_count = getMaxLoginsWithoutPasskey(event) + 1;
     // No PassKey used
     event.authentication.methods = [];
 
@@ -115,8 +123,7 @@ describe("Passwordless", () => {
 
   it("Should not deny login after grace period if a PassKey was used", async () => {
     // Prepare
-    event.stats.logins_count =
-      parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10) + 1;
+    event.stats.logins_count = getMaxLoginsWithoutPasskey(event) + 1;
 
     // Act
     await onExecutePostLogin(event, api);
