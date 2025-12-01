@@ -2,18 +2,18 @@ import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
 import { onExecutePostLogin, onContinuePostLogin } from "./passwordless.js";
 
-/**
- * Get the maximum number of allowed logins without a passkey, ensuring at least 1.
- *
- * @param {Event} event - Details about the user and the context in which they are logging in.
- * @returns {Number} Maximum number of allowed logins without a passkey (min: 1).
- */
-function getMaxLoginsWithoutPasskey(event) {
-  return Math.max(1, parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10));
-}
-
 describe("Passwordless", () => {
   let event, api;
+
+  /**
+   * Get the maximum number of allowed logins without a passkey, ensuring at least 1.
+   *
+   * @param {Event} event - Details about the user and the context in which they are logging in.
+   * @returns {Number} Maximum number of allowed logins without a passkey (min: 1).
+   */
+  function getMaxLoginsWithoutPasskey(event) {
+    return Math.max(1, parseInt(event.secrets.MAX_LOGINS_WITHOUT_PASSKEY, 10));
+  }
 
   beforeEach(() => {
     // Mock Auth0 Event and API objects
