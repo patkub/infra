@@ -89,7 +89,7 @@ chmod +x ./scripts/client/install.sh
 
 ## Dev Setup
 
-Node.js v24 LTS
+[Node.js v24 LTS](https://nodejs.org/en/download), [pnpm](https://pnpm.io/installation)
 
 Install dependencies
 
