@@ -89,6 +89,8 @@ chmod +x ./scripts/client/install.sh
 
 ## Dev Setup
 
+Node.js v24 LTS
+
 Install dependencies
 
 ```bash
