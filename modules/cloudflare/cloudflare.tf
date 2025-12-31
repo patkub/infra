@@ -161,18 +161,20 @@ resource "cloudflare_zero_trust_gateway_policy" "zero_trust_block_ads_categories
   ])}})"
 }
 
-# Cloudflare Gateway Policy to Disable Logging and Enable TLS Decryption
+# Cloudflare Gateway Settings
 data "cloudflare_zero_trust_gateway_settings" "current_zero_trust_gateway_settings" {
   account_id = var.cf_account_id
 }
 resource "cloudflare_zero_trust_gateway_settings" "zero_trust_gateway_settings" {
   account_id = var.cf_account_id
   settings = {
+    # Disable logging
     activity_log = {
       enabled = false
     }
+    # TLS Decryption
     tls_decrypt = {
-      enabled = true
+      enabled = false
     }
     # Use existing certificate
     certificate: {
