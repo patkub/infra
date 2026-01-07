@@ -81,13 +81,13 @@ chmod +x ./scripts/client/install.sh
 ```
 
 - Adds client-side cloudflared SSH host for meerkat
-- Patches SDKMAN! to automatically import Cloudflare Zero Trust certificate when installing a Java JDK
 - Adds Cloudflare Zero Trust certificate to npmrc
+- Patches SDKMAN! to automatically import Cloudflare Zero Trust certificate when installing a Java JDK
 
 ### Individual Scripts
+- `./scripts/client/ssh/ssh.sh` - Adds SSH host for meerkat
 - `./scripts/client/npm/npm.sh` - Configures npmrc
 - `./scripts/client/sdkman/patch.sh` - Patches SDKMAN!
-- `./scripts/client/ssh/ssh.sh` - Adds SSH host for meerkat
 
 ## Dev Setup
 
