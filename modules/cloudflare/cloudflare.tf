@@ -145,11 +145,11 @@ locals {
   ])...)
 }
 
-# Cloudflare Gateway Policy to block Ads and security risks
+# Cloudflare Gateway Policy to block ads and security risks
 resource "cloudflare_zero_trust_gateway_policy" "zero_trust_block_categories" {
   account_id = var.cf_account_id
-  name       = "Security Block"
-  description = "Block Security and Ads"
+  name       = "AdBlock"
+  description = "Block ads and security risks"
   precedence = 0
   action     = "block"
   enabled    = true
