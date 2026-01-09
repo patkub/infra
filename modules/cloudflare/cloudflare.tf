@@ -145,19 +145,36 @@ locals {
   ])...)
 }
 
-# Cloudflare Gateway Policy to block Ads Categories
-resource "cloudflare_zero_trust_gateway_policy" "zero_trust_block_ads_categories" {
+# Cloudflare Gateway Policy to block Ads and security risks
+resource "cloudflare_zero_trust_gateway_policy" "zero_trust_block_categories" {
   account_id = var.cf_account_id
-  name       = "Block Ads"
-  description = "Block Deceptive Ads, and Parked & For Sale Domains"
+  name       = "Security Block"
+  description = "Block Security and Ads"
   precedence = 0
   action     = "block"
   enabled    = true
   filters    = ["dns"]
+  # "Content Categories" in "Ads"
   traffic    = "any(dns.content_category[*] in {${join(" ", [
     local.subcategories_map["Advertisements"],
     local.subcategories_map["Deceptive Ads"],
     local.subcategories_map["Parked & For Sale Domains"]
+  # "Security Categories" in "All security risks"
+  ])}}) and any(dns.security_category[*] in {${join(" ", [
+    local.subcategories_map["Anonymizer"],
+    local.subcategories_map["Brand Embedding"],
+    local.subcategories_map["Command and Control & Botnet"],
+    local.subcategories_map["Compromised Domain"],
+    local.subcategories_map["Cryptomining"],
+    local.subcategories_map["DGA Domains"],
+    local.subcategories_map["DNS Tunneling"],
+    local.subcategories_map["Malware"],
+    local.subcategories_map["Phishing"],
+    local.subcategories_map["Potentially unwanted software"],
+    local.subcategories_map["Private IP Address"],
+    local.subcategories_map["Scam"],
+    local.subcategories_map["Spam"],
+    local.subcategories_map["Spyware"]
   ])}})"
 }
 
