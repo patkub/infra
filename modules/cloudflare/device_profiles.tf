@@ -75,7 +75,7 @@ resource "cloudflare_zero_trust_device_custom_profile" "example_zero_trust_devic
     mode = "warp"
   }
   support_url = "https://1.1.1.1/help"
-  switch_locked = true
+  switch_locked = false
   tunnel_protocol = "wireguard"
 }
 # End Warp Connector profile
