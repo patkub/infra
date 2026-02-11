@@ -6,8 +6,8 @@ PasswordAuthentication no
 PubkeyAuthentication yes
 TrustedUserCAKeys /etc/ssh/ca.pub
 
-# allow epicpatka@gmail.com to login as patrick
-Match user patrick
+# For non warp devices, allow epicpatka@gmail.com to login as patrick
+Match Address *,!100.96.0.0/12 User patrick
   AuthorizedPrincipalsCommand /bin/echo 'epicpatka'
   AuthorizedPrincipalsCommandUser nobody
 EOF
