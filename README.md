@@ -55,6 +55,8 @@ terraform apply
 
 ## Server Configuration
 
+Follow: [SSH with Access for Infrastructure: Configure SSH Server](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/use-cases/ssh/ssh-infrastructure-access/#7-configure-ssh-server)
+
 Follow: [Short-lived certificates (legacy)](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/non-http/short-lived-certificates-legacy/)
 
 Configure server with:
