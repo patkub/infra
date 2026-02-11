@@ -1,6 +1,9 @@
 # Cloudflare module
 module "cloudflare" {
   source = "./modules/cloudflare"
+  depends_on = [module.auth0]
+
+  auth0_client_cloudflare_access_id = module.auth0.auth0_client_cloudflare_access_id
 
   # Cloudflare Account ID
   cf_account_id = var.cf_account_id

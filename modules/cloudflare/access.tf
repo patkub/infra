@@ -2,7 +2,7 @@
 
 # Auth0 client for Cloudflare Access OIDC Provider
 data "auth0_client" "cloudflare_access" {
-  name = "Cloudflare Access"
+  client_id = var.auth0_client_cloudflare_access_id
 }
 
 ## Zero Trust Auth0 OIDC Provider

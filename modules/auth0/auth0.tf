@@ -155,3 +155,7 @@ resource "auth0_trigger_actions" "login_flow" {
     display_name = auth0_action.passwordless.name
   }
 }
+
+output "auth0_client_cloudflare_access_id" {
+  value = auth0_client.cloudflare_access.id
+}

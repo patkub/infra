@@ -18,3 +18,9 @@ variable "AUTH0_DOMAIN" {
   type        = string
   sensitive   = true
 }
+
+variable "auth0_client_cloudflare_access_id" {
+  description = "Cloudflare Access Auth0 Client ID"
+  type        = string
+  sensitive   = false
+}
