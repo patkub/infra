@@ -19,6 +19,7 @@ variable "AUTH0_DOMAIN" {
   sensitive   = true
 }
 
+# Auth0 Client ID for Cloudflare Access OIDC Client
 variable "auth0_client_cloudflare_access_id" {
   description = "Cloudflare Access Auth0 Client ID"
   type        = string
