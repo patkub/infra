@@ -9,7 +9,7 @@ data "cloudflare_zero_trust_tunnel_cloudflared_virtual_network" "cloudflared_vir
 }
 
 # Zero Trust Infrastructure Target hostname for Meerkat
-resource "cloudflare_zero_trust_access_infrastructure_target" "infra_target" {
+resource "cloudflare_zero_trust_access_infrastructure_target" "meerkat_infra_target" {
   account_id = var.cf_account_id
   hostname = "meerkat"
   ip = {
@@ -21,7 +21,7 @@ resource "cloudflare_zero_trust_access_infrastructure_target" "infra_target" {
 }
 
 # Zero Trust Infrastructure Application for Meerkat
-resource "cloudflare_zero_trust_access_application" "infra_app" {
+resource "cloudflare_zero_trust_access_application" "meerkat_infra_app" {
   account_id = var.cf_account_id
   name       = "meerkat infra"
   type       = "infrastructure"

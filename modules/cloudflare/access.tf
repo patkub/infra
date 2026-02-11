@@ -42,7 +42,7 @@ resource "cloudflare_zero_trust_access_policy" "allow_epicpatka_policy" {
 
 # Zero Trust Access Application for Meerkat SSH
 # Allows access via Auth0 OIDC Identity Provider (IdP)
-resource "cloudflare_zero_trust_access_application" "meerkat_zero_trust_access_application" {
+resource "cloudflare_zero_trust_access_application" "meerkat" {
   zone_id                     = var.cf_zone_id
   name                        = "meerkat"
   domain                      = "meerkat.patkub.vip"

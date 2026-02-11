@@ -1,7 +1,7 @@
 # Device Profiles
 
 # WARP Connector profile
-resource "cloudflare_zero_trust_device_custom_profile" "example_zero_trust_device_custom_profile" {
+resource "cloudflare_zero_trust_device_custom_profile" "warp_connector_custom_profile" {
   account_id = var.cf_account_id
   match = "identity.email == \"warp_connector@epicpatka.cloudflareaccess.com\""
   name = "WARP Connector"
@@ -84,7 +84,7 @@ resource "cloudflare_zero_trust_device_custom_profile" "example_zero_trust_devic
 # Only traffic to 192.168.1.38/32 routes through warp
 # Base CIDR: 192.168.0.0/16
 # Excluded CIDRs: 192.168.1.38/32
-resource "cloudflare_zero_trust_device_default_profile" "zero_trust_device_default_profile" {
+resource "cloudflare_zero_trust_device_default_profile" "default_profile" {
   account_id = var.cf_account_id
   allow_mode_switch = true
   allow_updates = false

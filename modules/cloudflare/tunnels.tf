@@ -22,7 +22,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "meerkat_zero_trust_t
     ]
     origin_request = {
       access = {
-        aud_tag = [cloudflare_zero_trust_access_application.meerkat_zero_trust_access_application.aud]
+        aud_tag = [cloudflare_zero_trust_access_application.meerkat.aud]
         team_name = "epicpatka"
         required = true
       }
