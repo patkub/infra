@@ -1,4 +1,4 @@
-### Cloudflare Access
+# Cloudflare Access
 
 # Auth0 client for Cloudflare Access OIDC Provider
 data "auth0_client" "cloudflare_access" {
@@ -65,5 +65,3 @@ resource "cloudflare_zero_trust_access_application" "meerkat_zero_trust_access_a
   # Auth0 OIDC Provider
   allowed_idps = [cloudflare_zero_trust_access_identity_provider.oidc_provider.id]
 }
-
-### End Cloudflare Access
