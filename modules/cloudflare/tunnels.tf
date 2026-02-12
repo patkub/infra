@@ -55,7 +55,7 @@ resource "cloudflare_zero_trust_tunnel_warp_connector" "meerkat_warp_zero_trust_
 
 resource "cloudflare_zero_trust_tunnel_cloudflared_route" "meerkat_zero_trust_tunnel_cloudflared_route" {
   account_id = var.cf_account_id
-  network = "192.168.1.0/24"
+  network = "192.168.1.38/32"
   tunnel_id = cloudflare_zero_trust_tunnel_warp_connector.meerkat_warp_zero_trust_tunnel_warp_connector.id
   comment = "My private network"
 }
