@@ -72,8 +72,7 @@ chmod +x ./scripts/server/install.sh
 
 ## Client Configuration
 
-Reference: [Connect to SSH with client-side cloudflared (legacy)](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/use-cases/ssh/ssh-cloudflared-authentication/)
-
+Reference: [Short-lived certificates (legacy): Connect as a user](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/non-http/short-lived-certificates-legacy/#7-connect-as-a-user)
 
 Configure client devices with:
 

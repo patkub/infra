@@ -8,8 +8,8 @@ if ! grep -q -x 'Host meerkat' "$HOME/.ssh/config"; then
 Host meerkat
   HostName meerkat.patkub.vip
 
-Match host meerkat.patkub.vip exec "/usr/bin/cloudflared access ssh-gen --hostname meerkat.patkub.vip"
-  ProxyCommand /usr/bin/cloudflared access ssh --hostname meerkat.patkub.vip
+Match host meerkat.patkub.vip exec "/usr/bin/cloudflared access ssh-gen --hostname %h"
+  ProxyCommand /usr/bin/cloudflared access ssh --hostname %h
   IdentityFile ~/.cloudflared/meerkat.patkub.vip-cf_key
   CertificateFile ~/.cloudflared/meerkat.patkub.vip-cf_key-cert.pub
 # End Meerkat
