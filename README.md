@@ -18,7 +18,7 @@ I setup Cloudflare Zero Trust Access to authenticate using an Auth0 OpenID Conne
 
 In Cloudflare Zero Trust, I have a DNS based Adblock policy, and an SSH tunnel protected by short-lived SSH certificates.
 
-This lets me SSH/VNC into my PC from anywhere using PassKeys, without exposing ports nor managing SSH keys!
+This lets me SSH/VNC into my PC from anywhere using PassKeys, without exposing ports or managing SSH keys!
 
 ## Cloud Configuration
 
