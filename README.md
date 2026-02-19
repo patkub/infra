@@ -8,11 +8,11 @@ Terraform configuration for my infrastructure
 - Cloudflare Access is secured with Auth0
 - Auth0 Action and Forms enforce login with passkey only
 - A DNS based Adblock policy
-- A Cloudflare tunnel accessible via SSH at [meerkat.patkub.vip](https://meerkat.patkub.vip/)
+- A Cloudflare Tunnel accessible via SSH at [meerkat.patkub.vip](https://meerkat.patkub.vip/)
 
 ### Description
 
-Implemented Cloudflare Zero Trust Access integrated with Auth0 OpenID Connect (OIDC), including a custom Post-Login Action that enforces passkey only authentication. Secured remote access via short-lived SSH certificates and Cloudflare tunnels, enabling passwordless SSH/VNC access without exposing ports or managing static SSH keys. Provisioned and managed all Cloudflare and Auth0 resources using Terraform to ensure repeatable, infrastructure-as-code deployments.
+Implemented Cloudflare Zero Trust Access integrated with Auth0 OpenID Connect (OIDC), including a custom Post-Login Action that enforces passkey only authentication. Secured remote access via short-lived SSH certificates and Cloudflare Tunnels, enabling passwordless SSH/VNC access without exposing ports or managing static SSH keys. Provisioned and managed all Cloudflare and Auth0 resources using Terraform to ensure repeatable, infrastructure-as-code deployments.
 
 ## Cloud Configuration
 
