@@ -12,13 +12,7 @@ Terraform configuration for my infrastructure
 
 ### Description
 
-Cloudflare Access secured with Auth0 and passkey only login deployed using Terraform configuration.
-
-I setup Cloudflare Zero Trust Access to authenticate using an Auth0 OpenID Connect (OIDC) application. In Auth0, I have a custom Post-Login Action that requires the user to use a passkey to sign-in. Passkeys are free, while traditional OTP MFA is a paid feature.
-
-In Cloudflare Zero Trust, I have a DNS based Adblock policy, and an SSH tunnel protected by short-lived SSH certificates.
-
-This lets me SSH/VNC into my PC from anywhere using passkeys, without exposing ports or managing SSH keys!
+Implemented Cloudflare Zero Trust Access integrated with Auth0 OpenID Connect (OIDC), including a custom Post-Login Action enforcing passkey only authentication. Secured remote access via short-lived SSH certificates and Cloudflare tunnels, enabling passwordless SSH/VNC access without exposed ports or static SSH key management. Provisioned and managed all Cloudflare and Auth0 resources using Terraform to ensure repeatable, infrastructure-as-code deployments.
 
 ## Cloud Configuration
 
