@@ -12,7 +12,7 @@ Terraform configuration for my infrastructure
 
 ### Description
 
-Implemented Cloudflare Zero Trust Access integrated with Auth0 OpenID Connect (OIDC), including a custom Post-Login Action enforcing passkey only authentication. Secured remote access via short-lived SSH certificates and Cloudflare tunnels, enabling passwordless SSH/VNC access without exposed ports or static SSH key management. Provisioned and managed all Cloudflare and Auth0 resources using Terraform to ensure repeatable, infrastructure-as-code deployments.
+Implemented Cloudflare Zero Trust Access integrated with Auth0 OpenID Connect (OIDC), including a custom Post-Login Action that enforces passkey only authentication. Secured remote access via short-lived SSH certificates and Cloudflare tunnels, enabling passwordless SSH/VNC access without exposing ports or managing static SSH keys. Provisioned and managed all Cloudflare and Auth0 resources using Terraform to ensure repeatable, infrastructure-as-code deployments.
 
 ## Cloud Configuration
 
