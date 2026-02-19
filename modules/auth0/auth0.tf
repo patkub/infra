@@ -82,10 +82,10 @@ resource "auth0_prompt" "prompts" {
   webauthn_platform_first_factor = false
 }
 
-# Form to enforce PassKey login policy
+# Form to enforce passkey login policy
 resource "auth0_form" "must_login_with_passkeys" {
   ending       = "{\"coordinates\":{\"x\":1250,\"y\":0},\"resume_flow\":true}"
-  name         = "Must Login with PassKeys"
+  name         = "Must Login with passkeys"
   nodes        = "[{\"alias\":\"New step\",\"config\":{\"components\":[{\"category\":\"BLOCK\",\"config\":{\"content\":\"\\u003ch2 style=\\\"text-align:center;\\\"\\u003e\\u003cstrong\\u003e{{ t('must_use_passkeys') }}\\u003c/strong\\u003e\\u003c/h2\\u003e\"},\"id\":\"rich_text_lGGp\",\"type\":\"RICH_TEXT\"},{\"category\":\"BLOCK\",\"config\":{\"text\":\"Continue\"},\"id\":\"next_button_EeLt\",\"type\":\"NEXT_BUTTON\"},{\"category\":\"BLOCK\",\"id\":\"divider_xFa3\",\"type\":\"DIVIDER\"}],\"next_node\":\"$ending\"},\"coordinates\":{\"x\":500,\"y\":0},\"id\":\"step_3q2e\",\"type\":\"STEP\"}]"
   start        = "{\"coordinates\":{\"x\":0,\"y\":0},\"next_node\":\"step_3q2e\"}"
   style        = null
@@ -95,15 +95,15 @@ resource "auth0_form" "must_login_with_passkeys" {
     primary = "en"
   }
   messages {
-    custom = "{\"must_use_passkeys\":\"Please login with PassKeys\"}"
+    custom = "{\"must_use_passkeys\":\"Please login with a passkey\"}"
     errors = null
   }
 }
 
-# Form to notify about PassKey login policy
+# Form to notify about passkey login policy
 resource "auth0_form" "notify_about_passkey_policy" {
   ending       = "{\"coordinates\":{\"x\":1250,\"y\":0},\"resume_flow\":true}"
-  name         = "Notify about PassKey Policy"
+  name         = "Notify about passkey Policy"
   nodes        = "[{\"alias\":\"New step\",\"config\":{\"components\":[{\"category\":\"BLOCK\",\"config\":{\"content\":\"\\u003ch2 style=\\\"text-align:center;\\\"\\u003e\\u003cstrong\\u003e{{ t('must_use_passkeys') }}\\u003c/strong\\u003e\\u003c/h2\\u003e\\u003ch2 style=\\\"text-align:center;\\\"\\u003e\\u003cstrong\\u003e{{ t('logins_left1') }} {{vars.logins_left}}  {{ t('logins_left2')}}\\u003c/strong\\u003e\\u003c/h2\\u003e\"},\"id\":\"rich_text_lGGp\",\"type\":\"RICH_TEXT\"},{\"category\":\"BLOCK\",\"config\":{\"text\":\"Continue\"},\"id\":\"next_button_EeLt\",\"type\":\"NEXT_BUTTON\"},{\"category\":\"BLOCK\",\"id\":\"divider_xFa3\",\"type\":\"DIVIDER\"}],\"next_node\":\"$ending\"},\"coordinates\":{\"x\":500,\"y\":0},\"id\":\"step_3q2e\",\"type\":\"STEP\"}]"
   start        = "{\"coordinates\":{\"x\":0,\"y\":0},\"next_node\":\"step_3q2e\"}"
   style        = null
@@ -113,12 +113,12 @@ resource "auth0_form" "notify_about_passkey_policy" {
     primary = "en"
   }
   messages {
-    custom = "{\"logins_left1\":\"You have \",\"logins_left2\":\" logins left without PassKeys\",\"must_use_passkeys\":\"Please enroll a PassKey\"}"
+    custom = "{\"logins_left1\":\"You have \",\"logins_left2\":\" logins left without passkeys\",\"must_use_passkeys\":\"Please enroll a passkey\"}"
     errors = null
   }
 }
 
-# Action to force users to authenticate with PassKeys "0c6cc5ae-5fcb-4f26-9a24-c78cbb71bcb8"
+# Action to force users to authenticate with passkeys "0c6cc5ae-5fcb-4f26-9a24-c78cbb71bcb8"
 resource "auth0_action" "passwordless" {
   code    = file("${path.module}/passwordless.js")
   deploy  = true

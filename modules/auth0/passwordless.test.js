@@ -52,7 +52,7 @@ describe("Passwordless", () => {
     vi.restoreAllMocks();
   });
 
-  it("Should continue login if a PassKey was used", async () => {
+  it("Should continue login if a passkey was used", async () => {
     // Prepare
     event.stats.logins_count = 1;
 
@@ -68,10 +68,10 @@ describe("Passwordless", () => {
     expect(api.session.revoke).not.toHaveBeenCalled();
   });
 
-  it("Should notify user about PassKey policy, but allow login without a PassKey during grace period", async () => {
+  it("Should notify user about passkey policy, but allow login without a passkey during grace period", async () => {
     // Prepare
     event.stats.logins_count = 1;
-    // No PassKey used
+    // No passkey used
     event.authentication.methods = [];
 
     // Act
@@ -98,10 +98,10 @@ describe("Passwordless", () => {
     expect(api.session.revoke).not.toHaveBeenCalled();
   });
 
-  it("Should deny login without a PassKey after grace period", async () => {
+  it("Should deny login without a Passkey after grace period", async () => {
     // Prepare
     event.stats.logins_count = getMaxLoginsWithoutPasskey(event) + 1;
-    // No PassKey used
+    // No passkey used
     event.authentication.methods = [];
 
     // Act
@@ -115,13 +115,13 @@ describe("Passwordless", () => {
       event.secrets.ENFORCE_FORM_ID,
     );
     // Rejected the current transaction, revoked the session, and deleted associated refresh tokens.
-    expect(api.access.deny).toHaveBeenCalledWith("Must login with PassKey");
-    expect(api.session.revoke).toHaveBeenCalledWith("Must login with PassKey", {
+    expect(api.access.deny).toHaveBeenCalledWith("Must login with a passkey");
+    expect(api.session.revoke).toHaveBeenCalledWith("Must login with a passkey", {
       preserveRefreshTokens: false,
     });
   });
 
-  it("Should not deny login after grace period if a PassKey was used", async () => {
+  it("Should not deny login after grace period if a passkey was used", async () => {
     // Prepare
     event.stats.logins_count = getMaxLoginsWithoutPasskey(event) + 1;
 
@@ -141,7 +141,7 @@ describe("Passwordless", () => {
     // Prepare
     event.stats.logins_count = 1;
     event.secrets.MAX_LOGINS_WITHOUT_PASSKEY = "0";
-    // No PassKey used
+    // No passkey used
     event.authentication.methods = [];
 
     // Act

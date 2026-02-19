@@ -1,5 +1,5 @@
 /**
- * Force users to authenticate with PassKeys only.
+ * Force users to authenticate with passkeys only.
  *
  * This action allows users to log in without a passkey for a limited number of times.
  * After exceeding this limit, users must authenticate using a passkey.
@@ -31,7 +31,7 @@ function getMaxLoginsWithoutPasskey(event) {
 }
 
 /**
- * Force users to authenticate with PassKeys only.
+ * Force users to authenticate with Passkeys only.
  *
  * Handler that will be called during the execution of a PostLogin flow.
  *
@@ -40,8 +40,8 @@ function getMaxLoginsWithoutPasskey(event) {
  */
 exports.onExecutePostLogin = async (event, api) => {
   // Continue login if a passkey was used to authenticate.
-  const usedPassKey = loginUsedPasskey(event);
-  if (usedPassKey) {
+  const usedPasskey = loginUsedPasskey(event);
+  if (usedPasskey) {
     return;
   }
 
@@ -74,8 +74,8 @@ exports.onExecutePostLogin = async (event, api) => {
  */
 exports.onContinuePostLogin = async (event, api) => {
   // Continue login if a passkey was used to authenticate.
-  const usedPassKey = loginUsedPasskey(event);
-  if (usedPassKey) {
+  const usedPasskey = loginUsedPasskey(event);
+  if (usedPasskey) {
     return;
   }
 
@@ -88,9 +88,9 @@ exports.onContinuePostLogin = async (event, api) => {
 
   // Exceeded login grace period.
   // Deny access.
-  api.access.deny("Must login with PassKey");
+  api.access.deny("Must login with a passkey");
   // Reject the current transaction, revoke the session, and delete associated refresh tokens.
-  api.session.revoke("Must login with PassKey", {
+  api.session.revoke("Must login with a passkey", {
     preserveRefreshTokens: false,
   });
 };

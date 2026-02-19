@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
 
-  # This job runs tests for Auth0 PassKey policy
+  # This job runs tests for Auth0 passkey policy
   passwordless:
     runs-on: ubuntu-latest
 
