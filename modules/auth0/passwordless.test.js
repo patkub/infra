@@ -116,9 +116,12 @@ describe("Passwordless", () => {
     );
     // Rejected the current transaction, revoked the session, and deleted associated refresh tokens.
     expect(api.access.deny).toHaveBeenCalledWith("Must login with a passkey");
-    expect(api.session.revoke).toHaveBeenCalledWith("Must login with a passkey", {
-      preserveRefreshTokens: false,
-    });
+    expect(api.session.revoke).toHaveBeenCalledWith(
+      "Must login with a passkey",
+      {
+        preserveRefreshTokens: false,
+      },
+    );
   });
 
   it("Should not deny login after grace period if a passkey was used", async () => {
