@@ -4,7 +4,7 @@
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 # Make scripts executable
-chmod +x $SCRIPT_DIR/**/*.sh
+chmod +x "$SCRIPT_DIR"/**/*.sh
 
 # Setup sshd for Meerkat
-$SCRIPT_DIR/sshd/sshd.sh
+"$SCRIPT_DIR"/sshd/sshd.sh
