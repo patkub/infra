@@ -1,0 +1,56 @@
+# Auto update Biome on Dependabot PRs
+
+name: Update Biome on Dependabot PR
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  generate-code:
+    # Only run this job for Dependabot PRs
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+    permissions:
+      # Give the default GITHUB_TOKEN write permission
+      # to commit and push the changed files back to the repository.
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref }}
+          # Value already defaults to true, but `persist-credentials` is required
+          # to push new commits to the repository.
+          persist-credentials: true
+      
+      - name: Use pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Biome migrate
+        run: pnpm biome migrate --write
+      
+      - name: Biome Lint
+        run: pnpm lint
+      
+      - name: Biome Format
+        run: pnpm format
+
+      - name: Run tests
+        run: pnpm test
+
+      # Commit all changed files back to the repository
+      - name: Commit and push changes
+        # This action handles committing any changes made by the script
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          # Add [dependabot skip] to the commit message to prevent Dependabot
+          # from treating the PR as manually modified and stopping updates.
+          commit_message: "chore(deps): [dependabot skip] biome migrate"
