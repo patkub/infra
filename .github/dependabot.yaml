@@ -6,7 +6,7 @@ version: 2
 multi-ecosystem-groups:
   infrastructure:
     schedule:
-      interval: "daily"
+      interval: "weekly"
 
 updates:
   # npm (Node.js) dependencies
