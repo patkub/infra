@@ -19,7 +19,4 @@ module "cloudflare" {
   cf_account_id = var.cf_account_id
   # Cloudflare Domain Overview API Zone ID
   cf_zone_id = var.cf_zone_id
-
-  # Auth0 Domain
-  AUTH0_DOMAIN = var.AUTH0_DOMAIN
 }

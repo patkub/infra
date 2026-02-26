@@ -31,6 +31,15 @@ function getMaxLoginsWithoutPasskey(event) {
 }
 
 /**
+ * Set a custom ID Token claim to indicate this login used a passkey
+ *
+ * @param {PostLoginAPI} api - Interface whose methods can be used to change the behavior of the login.
+ */
+function setPasskeyCustomClaims(api) {
+  api.idToken.setCustomClaim("https://patkub.vip/usedPasskey", "yes");
+}
+
+/**
  * Force users to authenticate with Passkeys only.
  *
  * Handler that will be called during the execution of a PostLogin flow.
@@ -42,6 +51,7 @@ exports.onExecutePostLogin = async (event, api) => {
   // Continue login if a passkey was used to authenticate.
   const usedPasskey = loginUsedPasskey(event);
   if (usedPasskey) {
+    setPasskeyCustomClaims(api);
     return;
   }
 
@@ -56,6 +66,7 @@ exports.onExecutePostLogin = async (event, api) => {
         logins_left: logins_left,
       },
     });
+    setPasskeyCustomClaims(api);
     return;
   }
 

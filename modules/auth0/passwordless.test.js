@@ -5,6 +5,8 @@ import { onExecutePostLogin, onContinuePostLogin } from "./passwordless.js";
 describe("Passwordless", () => {
   let event, api;
 
+  const USED_PASSKEY_CLAIM_NAME = "https://patkub.vip/usedPasskey";
+
   /**
    * Get the maximum number of allowed logins without a passkey, ensuring at least 1.
    *
@@ -39,6 +41,9 @@ describe("Passwordless", () => {
       access: {
         deny: vi.fn(),
       },
+      idToken: {
+        setCustomClaim: vi.fn()
+      },
       prompt: {
         render: vi.fn(),
       },
@@ -61,6 +66,9 @@ describe("Passwordless", () => {
     await onContinuePostLogin(event, api);
 
     // Assert
+    // Set a custom ID Token claim to indicate this login used a passkey.
+    expect(api.idToken.setCustomClaim).toHaveBeenCalledTimes(1);
+    expect(api.idToken.setCustomClaim).toHaveBeenCalledWith(USED_PASSKEY_CLAIM_NAME, "yes");
     // Did not notify the user.
     expect(api.prompt.render).not.toHaveBeenCalled();
     // Allowed the current transaction.
@@ -83,6 +91,9 @@ describe("Passwordless", () => {
       getMaxLoginsWithoutPasskey(event) - event.stats.logins_count;
 
     // Assert
+    // Set a custom ID Token claim to indicate this login used a passkey.
+    expect(api.idToken.setCustomClaim).toHaveBeenCalledTimes(1);
+    expect(api.idToken.setCustomClaim).toHaveBeenCalledWith(USED_PASSKEY_CLAIM_NAME, "yes");
     // Notified user that they have 2 logins left without a passkey.
     expect(api.prompt.render).toHaveBeenCalledTimes(1);
     expect(api.prompt.render).toHaveBeenCalledWith(
@@ -109,6 +120,8 @@ describe("Passwordless", () => {
     await onContinuePostLogin(event, api);
 
     // Assert
+    // Did NOT set a custom ID Token claim to indicate this login used a passkey.
+    expect(api.idToken.setCustomClaim).not.toHaveBeenCalled();
     // Notified user that they are blocked from logging in without a passkey.
     expect(api.prompt.render).toHaveBeenCalledTimes(1);
     expect(api.prompt.render).toHaveBeenCalledWith(
@@ -133,6 +146,9 @@ describe("Passwordless", () => {
     await onContinuePostLogin(event, api);
 
     // Assert
+    // Set a custom ID Token claim to indicate this login used a passkey.
+    expect(api.idToken.setCustomClaim).toHaveBeenCalledTimes(1);
+    expect(api.idToken.setCustomClaim).toHaveBeenCalledWith(USED_PASSKEY_CLAIM_NAME, "yes");
     // Did not notify the user.
     expect(api.prompt.render).not.toHaveBeenCalled();
     // Allowed the current transaction.
@@ -165,5 +181,8 @@ describe("Passwordless", () => {
     // Allowed the current transaction.
     expect(api.access.deny).not.toHaveBeenCalled();
     expect(api.session.revoke).not.toHaveBeenCalled();
+    // Set a custom ID Token claim to indicate this login used a passkey.
+    expect(api.idToken.setCustomClaim).toHaveBeenCalledTimes(1);
+    expect(api.idToken.setCustomClaim).toHaveBeenCalledWith(USED_PASSKEY_CLAIM_NAME, "yes");
   });
 });

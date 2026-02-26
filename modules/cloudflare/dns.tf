@@ -1,6 +1,6 @@
-### patkub.vip - Cloudflare DNS Records
+# patkub.vip - Cloudflare DNS Records
 
-## Email Security Records
+# Email Security Records
 resource "cloudflare_dns_record" "email_1" {
   content = "\"v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s;\""
   name    = "_dmarc"
@@ -28,7 +28,7 @@ resource "cloudflare_dns_record" "email_3" {
   zone_id = var.cf_zone_id
 }
 
-## Cloudflare Tunnel for Meerkat SSH
+# Cloudflare Tunnel for Meerkat SSH
 resource "cloudflare_dns_record" "meerkat_ssh" {
   content = "${cloudflare_zero_trust_tunnel_cloudflared.meerkat_zero_trust_tunnel_cloudflared.id}.cfargotunnel.com"
   name    = "meerkat"
@@ -38,4 +38,4 @@ resource "cloudflare_dns_record" "meerkat_ssh" {
   zone_id = var.cf_zone_id
 }
 
-### End patkub.vip - Cloudflare DNS Records
+# End patkub.vip - Cloudflare DNS Records
