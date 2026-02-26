@@ -42,7 +42,7 @@ describe("Passwordless", () => {
         deny: vi.fn(),
       },
       idToken: {
-        setCustomClaim: vi.fn()
+        setCustomClaim: vi.fn(),
       },
       prompt: {
         render: vi.fn(),
@@ -68,7 +68,10 @@ describe("Passwordless", () => {
     // Assert
     // Set a custom ID Token claim to indicate this login used a passkey.
     expect(api.idToken.setCustomClaim).toHaveBeenCalledTimes(1);
-    expect(api.idToken.setCustomClaim).toHaveBeenCalledWith(USED_PASSKEY_CLAIM_NAME, "yes");
+    expect(api.idToken.setCustomClaim).toHaveBeenCalledWith(
+      USED_PASSKEY_CLAIM_NAME,
+      "yes",
+    );
     // Did not notify the user.
     expect(api.prompt.render).not.toHaveBeenCalled();
     // Allowed the current transaction.
@@ -93,7 +96,10 @@ describe("Passwordless", () => {
     // Assert
     // Set a custom ID Token claim to indicate this login used a passkey.
     expect(api.idToken.setCustomClaim).toHaveBeenCalledTimes(1);
-    expect(api.idToken.setCustomClaim).toHaveBeenCalledWith(USED_PASSKEY_CLAIM_NAME, "yes");
+    expect(api.idToken.setCustomClaim).toHaveBeenCalledWith(
+      USED_PASSKEY_CLAIM_NAME,
+      "yes",
+    );
     // Notified user that they have 2 logins left without a passkey.
     expect(api.prompt.render).toHaveBeenCalledTimes(1);
     expect(api.prompt.render).toHaveBeenCalledWith(
@@ -148,7 +154,10 @@ describe("Passwordless", () => {
     // Assert
     // Set a custom ID Token claim to indicate this login used a passkey.
     expect(api.idToken.setCustomClaim).toHaveBeenCalledTimes(1);
-    expect(api.idToken.setCustomClaim).toHaveBeenCalledWith(USED_PASSKEY_CLAIM_NAME, "yes");
+    expect(api.idToken.setCustomClaim).toHaveBeenCalledWith(
+      USED_PASSKEY_CLAIM_NAME,
+      "yes",
+    );
     // Did not notify the user.
     expect(api.prompt.render).not.toHaveBeenCalled();
     // Allowed the current transaction.
@@ -183,6 +192,9 @@ describe("Passwordless", () => {
     expect(api.session.revoke).not.toHaveBeenCalled();
     // Set a custom ID Token claim to indicate this login used a passkey.
     expect(api.idToken.setCustomClaim).toHaveBeenCalledTimes(1);
-    expect(api.idToken.setCustomClaim).toHaveBeenCalledWith(USED_PASSKEY_CLAIM_NAME, "yes");
+    expect(api.idToken.setCustomClaim).toHaveBeenCalledWith(
+      USED_PASSKEY_CLAIM_NAME,
+      "yes",
+    );
   });
 });
