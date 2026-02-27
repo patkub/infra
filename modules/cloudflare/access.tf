@@ -14,7 +14,7 @@ data "auth0_client" "cloudflare_access" {
 
 # Zero Trust Auth0 OIDC Provider
 resource "cloudflare_zero_trust_access_identity_provider" "oidc_provider" {
-  zone_id = var.cf_zone_id
+  account_id = var.cf_account_id
   name = "Auth0 OpenID Connect"
   type = "oidc"
 
