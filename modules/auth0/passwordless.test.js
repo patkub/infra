@@ -63,7 +63,7 @@ describe("Passwordless", () => {
 
     // Act
     await onExecutePostLogin(event, api);
-    await onContinuePostLogin(event, api);
+    // onContinuePostLogin is not called
 
     // Assert
     // Set a custom ID Token claim to indicate this login used a passkey.
@@ -115,7 +115,7 @@ describe("Passwordless", () => {
     expect(api.session.revoke).not.toHaveBeenCalled();
   });
 
-  it("Should deny login without a Passkey after grace period", async () => {
+  it("Should deny login without a passkey after grace period", async () => {
     // Prepare
     event.stats.logins_count = getMaxLoginsWithoutPasskey(event) + 1;
     // No passkey used
@@ -126,12 +126,15 @@ describe("Passwordless", () => {
     await onContinuePostLogin(event, api);
 
     // Assert
-    // Did NOT set a custom ID Token claim to indicate this login used a passkey.
-    expect(api.idToken.setCustomClaim).not.toHaveBeenCalled();
     // Notified user that they are blocked from logging in without a passkey.
     expect(api.prompt.render).toHaveBeenCalledTimes(1);
     expect(api.prompt.render).toHaveBeenCalledWith(
       event.secrets.ENFORCE_FORM_ID,
+    );
+    // Did NOT set a custom ID Token claim to indicate this login used a passkey.
+    expect(api.idToken.setCustomClaim).not.toHaveBeenCalledWith(
+      USED_PASSKEY_CLAIM_NAME,
+      "yes",
     );
     // Rejected the current transaction, revoked the session, and deleted associated refresh tokens.
     expect(api.access.deny).toHaveBeenCalledWith("Must login with a passkey");
@@ -149,7 +152,7 @@ describe("Passwordless", () => {
 
     // Act
     await onExecutePostLogin(event, api);
-    await onContinuePostLogin(event, api);
+    // onContinuePostLogin is not called
 
     // Assert
     // Set a custom ID Token claim to indicate this login used a passkey.

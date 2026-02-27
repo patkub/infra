@@ -51,6 +51,7 @@ exports.onExecutePostLogin = async (event, api) => {
   // Continue login if a passkey was used to authenticate.
   const usedPasskey = loginUsedPasskey(event);
   if (usedPasskey) {
+    // Set a custom ID Token claim to indicate this login used a passkey.
     setPasskeyCustomClaims(api);
     return;
   }
@@ -66,7 +67,6 @@ exports.onExecutePostLogin = async (event, api) => {
         logins_left: logins_left,
       },
     });
-    setPasskeyCustomClaims(api);
     return;
   }
 
@@ -75,7 +75,8 @@ exports.onExecutePostLogin = async (event, api) => {
 };
 
 /**
- * Deny login after notification form if user didn't authenticate with a passkey
+ * Deny login after notification form if user didn't authenticate with a passkey.
+ * This handler is not called if a passkey was used.
  *
  * Handler that will be invoked when this action is resuming after an external redirect. If your
  * onExecutePostLogin function does not perform a redirect, this function can be safely ignored.
@@ -84,16 +85,12 @@ exports.onExecutePostLogin = async (event, api) => {
  * @param {PostLoginAPI} api - Interface whose methods can be used to change the behavior of the login.
  */
 exports.onContinuePostLogin = async (event, api) => {
-  // Continue login if a passkey was used to authenticate.
-  const usedPasskey = loginUsedPasskey(event);
-  if (usedPasskey) {
-    return;
-  }
-
   // Number of logins allowed before enforcing passkey policy.
   const maxLoginsWithoutPasskey = getMaxLoginsWithoutPasskey(event);
   if (event.stats.logins_count <= maxLoginsWithoutPasskey) {
     // Skip passkey policy during grace period.
+    // Set a custom ID Token claim to indicate this login used a passkey.
+    setPasskeyCustomClaims(api);
     return;
   }
 
