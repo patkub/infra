@@ -2,6 +2,8 @@
 
 Cloudflare Access secured with Auth0 and passkey only login
 
+![SSH Demo](docs/demo.gif)
+
 ## Overview
 
 Terraform configuration for my infrastructure
@@ -13,6 +15,13 @@ Terraform configuration for my infrastructure
 ### Description
 
 Implemented Cloudflare Zero Trust Access integrated with Auth0 OpenID Connect (OIDC), including a custom Post-Login Action that enforces passkey only authentication. Secured remote access via short-lived SSH certificates and Cloudflare Tunnels, enabling passwordless SSH/VNC access without exposing ports or managing static SSH keys. Provisioned and managed all Cloudflare and Auth0 resources using Terraform to ensure repeatable, infrastructure-as-code deployments.
+
+## Usage
+
+- Connect to Cloudflare Zero Trust team: `epicpatka`.
+- Login with a passkey.
+- Use `warp-cli target list` to show available targets.
+- Use `ssh meerkat` to connect using cloudflared.
 
 ## Cloud Configuration
 
@@ -104,3 +113,5 @@ Run tests
 - `pnpm test` - Run unit tests
 - `pnpm test:watch` - Automatically re-run tests when files change
 
+Demo
+- Demo created with [vhs](https://github.com/charmbracelet/vhs)
