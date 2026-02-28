@@ -57,7 +57,8 @@
 
 Output demo.gif
 
-Require echo
+Require warp-cli
+Require ssh
 
 Set Shell "bash"
 Set FontSize 12
