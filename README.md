@@ -2,6 +2,8 @@
 
 Cloudflare Access secured with Auth0 and passkey only login
 
+![SSH Demo](docs/demo.gif)
+
 ## Overview
 
 Terraform configuration for my infrastructure
