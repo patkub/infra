@@ -5,7 +5,7 @@ data "cloudflare_zero_trust_gateway_categories_list" "categories" {
 }
 
 locals {
-  # main category to list of all sub category ids
+  # main category to list of all subcategory ids
   categories_map = {
     for idx, c in data.cloudflare_zero_trust_gateway_categories_list.categories.result :
       c.name => {
@@ -14,7 +14,7 @@ locals {
       }
   }
 
-  # sub category to id
+  # subcategory to id
   subcategories_map = merge(flatten([
     for idx, c in data.cloudflare_zero_trust_gateway_categories_list.categories.result : {
       for k, v in coalesce(c.subcategories, []) :
