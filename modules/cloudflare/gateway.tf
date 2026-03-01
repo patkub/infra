@@ -5,10 +5,13 @@ data "cloudflare_zero_trust_gateway_categories_list" "categories" {
 }
 
 locals {
-  # main category to id
-  main_categories_map = {
+  # main category to list of all sub category ids
+  categories_map = {
     for idx, c in data.cloudflare_zero_trust_gateway_categories_list.categories.result :
-    c.name => c.id
+      c.name => {
+        for k, v in coalesce(c.subcategories, []) :
+          v.name => v.id
+      }
   }
 
   # sub category to id
@@ -18,15 +21,6 @@ locals {
       v.name => v.id
     }
   ])...)
-
-  # main category to list of all sub category ids
-  categories_map = {
-    for idx, c in data.cloudflare_zero_trust_gateway_categories_list.categories.result :
-      c.name => {
-        for k, v in coalesce(c.subcategories, []) :
-          v.name => v.id
-      }
-  }
 }
 
 # Cloudflare Gateway Policy to block ads and security risks
