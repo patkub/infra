@@ -5,17 +5,28 @@ data "cloudflare_zero_trust_gateway_categories_list" "categories" {
 }
 
 locals {
+  # main category to id
   main_categories_map = {
     for idx, c in data.cloudflare_zero_trust_gateway_categories_list.categories.result :
     c.name => c.id
   }
 
+  # sub category to id
   subcategories_map = merge(flatten([
     for idx, c in data.cloudflare_zero_trust_gateway_categories_list.categories.result : {
       for k, v in coalesce(c.subcategories, []) :
       v.name => v.id
     }
   ])...)
+
+  # main category to list of all sub category ids
+  categories_map = {
+    for idx, c in data.cloudflare_zero_trust_gateway_categories_list.categories.result :
+      c.name => {
+        for k, v in coalesce(c.subcategories, []) :
+          v.name => v.id
+      }
+  }
 }
 
 # Cloudflare Gateway Policy to block ads and security risks
@@ -29,26 +40,11 @@ resource "cloudflare_zero_trust_gateway_policy" "zero_trust_block_categories" {
   filters    = ["dns"]
   # "Content Categories" in "Ads"
   traffic    = "any(dns.content_category[*] in {${join(" ", [
-    local.subcategories_map["Advertisements"],
-    local.subcategories_map["Deceptive Ads"],
-    local.subcategories_map["Parked & For Sale Domains"]
-  # "Security Categories" in "All security risks"
-  ])}}) and any(dns.security_category[*] in {${join(" ", [
-    local.subcategories_map["Anonymizer"],
-    local.subcategories_map["Brand Embedding"],
-    local.subcategories_map["Command and Control & Botnet"],
-    local.subcategories_map["Compromised Domain"],
-    local.subcategories_map["Cryptomining"],
-    local.subcategories_map["DGA Domains"],
-    local.subcategories_map["DNS Tunneling"],
-    local.subcategories_map["Malware"],
-    local.subcategories_map["Phishing"],
-    local.subcategories_map["Potentially unwanted software"],
-    local.subcategories_map["Private IP Address"],
-    local.subcategories_map["Scam"],
-    local.subcategories_map["Spam"],
-    local.subcategories_map["Spyware"]
-  ])}})"
+      local.subcategories_map["Advertisements"],
+      local.subcategories_map["Deceptive Ads"],
+      local.subcategories_map["Parked & For Sale Domains"]
+    # "Security Categories" in "All security risks"
+    ])}}) and any(dns.security_category[*] in {${join(" ", values(local.categories_map["Security threats"]))}})"
 }
 
 # Cloudflare Gateway Settings
