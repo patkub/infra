@@ -9,7 +9,7 @@ module "auth0" {
 
 # Cloudflare module
 module "cloudflare" {
-  source = "./modules/cloudflare"
+  source     = "./modules/cloudflare"
   depends_on = [module.auth0]
 
   # Auth0 Client ID for Cloudflare Access OIDC Client

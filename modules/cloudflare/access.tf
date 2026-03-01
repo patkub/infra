@@ -15,16 +15,16 @@ data "auth0_client" "cloudflare_access" {
 # Zero Trust Auth0 OIDC Provider
 resource "cloudflare_zero_trust_access_identity_provider" "oidc_provider" {
   account_id = var.cf_account_id
-  name = "Auth0 OpenID Connect"
-  type = "oidc"
+  name       = "Auth0 OpenID Connect"
+  type       = "oidc"
 
   config = {
-    client_id = data.auth0_client.cloudflare_access.client_id
+    client_id     = data.auth0_client.cloudflare_access.client_id
     client_secret = data.auth0_client.cloudflare_access.client_secret
-    auth_url = "https://${data.auth0_tenant.tenant.domain}/authorize"
-    token_url = "https://${data.auth0_tenant.tenant.domain}/oauth/token"
-    certs_url = "https://${data.auth0_tenant.tenant.domain}/.well-known/jwks.json"
-    pkce_enabled = true
+    auth_url      = "https://${data.auth0_tenant.tenant.domain}/authorize"
+    token_url     = "https://${data.auth0_tenant.tenant.domain}/oauth/token"
+    certs_url     = "https://${data.auth0_tenant.tenant.domain}/.well-known/jwks.json"
+    pkce_enabled  = true
     scopes = [
       "openid",
       "email",
@@ -61,14 +61,14 @@ resource "cloudflare_zero_trust_access_policy" "allow_epicpatka_policy" {
 # Zero Trust Access Application for Meerkat SSH
 # Allows access via Auth0 OIDC Identity Provider (IdP)
 resource "cloudflare_zero_trust_access_application" "meerkat" {
-  zone_id                     = var.cf_zone_id
-  name                        = "meerkat"
-  domain                      = "meerkat.patkub.vip"
-  type                        = "self_hosted"
-  session_duration            = "24h"
+  zone_id          = var.cf_zone_id
+  name             = "meerkat"
+  domain           = "meerkat.patkub.vip"
+  type             = "self_hosted"
+  session_duration = "24h"
 
   # Instant Auth: Allow users to skip identity provider selection when only one login method is available.
-  auto_redirect_to_identity   = true
+  auto_redirect_to_identity = true
   # WARP authentication identity
   allow_authenticate_via_warp = false
   # Enables automatic authentication through cloudflared.
@@ -76,7 +76,7 @@ resource "cloudflare_zero_trust_access_application" "meerkat" {
 
   # Allow epicpatka
   policies = [{
-    id = cloudflare_zero_trust_access_policy.allow_epicpatka_policy.id
+    id         = cloudflare_zero_trust_access_policy.allow_epicpatka_policy.id
     precedence = 1
   }]
 

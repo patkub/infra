@@ -11,10 +11,10 @@ data "cloudflare_zero_trust_tunnel_cloudflared_virtual_network" "cloudflared_vir
 # Zero Trust Infrastructure Target hostname for Meerkat
 resource "cloudflare_zero_trust_access_infrastructure_target" "meerkat_infra_target" {
   account_id = var.cf_account_id
-  hostname = "meerkat"
+  hostname   = "meerkat"
   ip = {
     ipv4 = {
-      ip_addr = "192.168.1.38"
+      ip_addr            = "192.168.1.38"
       virtual_network_id = data.cloudflare_zero_trust_tunnel_cloudflared_virtual_network.cloudflared_virtual_network.id
     }
   }
