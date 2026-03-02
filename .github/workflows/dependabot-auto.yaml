@@ -56,4 +56,4 @@ jobs:
         with:
           # Add [dependabot skip] to the commit message to prevent Dependabot
           # from treating the PR as manually modified and stopping updates.
-          commit_message: "chore(deps): [dependabot skip] biome migrate"
+          commit_message: "chore(deps): [dependabot skip] auto updates"
