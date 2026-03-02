@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@auth0/actions':
-        specifier: ^0.15.0
-        version: 0.15.0
+        specifier: ^0.17.0
+        version: 0.17.0
       '@biomejs/biome':
         specifier: 2.4.4
         version: 2.4.4
@@ -23,8 +23,8 @@ importers:
 
 packages:
 
-  '@auth0/actions@0.15.0':
-    resolution: {integrity: sha512-U4yITrT3kVRLhHc/lhfZV3hmFVWpGX6X1SngCuCWaKS7PoAjYztO45/MpZwnCyo+/hpI2oiiZ1yH/js8JnFA4g==}
+  '@auth0/actions@0.17.0':
+    resolution: {integrity: sha512-3CHNcFJYx++YDYU5AfdA/bPLhV+BhHjKm/wzNuCYYvo62Eve2RQqYNp151hzrJouzlcev1k3Zr51/pBTejkEVg==}
     engines: {node: '>=18.0.0'}
 
   '@babel/helper-string-parser@7.27.1':
@@ -659,7 +659,7 @@ packages:
 
 snapshots:
 
-  '@auth0/actions@0.15.0': {}
+  '@auth0/actions@0.17.0': {}
 
   '@babel/helper-string-parser@7.27.1': {}
 
