@@ -14,7 +14,7 @@ updates:
     directory: "/"
     patterns: ["*"]
     multi-ecosystem-group: "infrastructure"
-  
+
   # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"

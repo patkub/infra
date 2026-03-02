@@ -1,16 +1,15 @@
 name: Build
 
-on: [push]
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
 
   # This job runs tests for Auth0 passkey policy
   passwordless:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [22.x]
 
     steps:
       - name: Checkout
@@ -19,55 +18,23 @@ jobs:
       - name: Use pnpm
         uses: pnpm/action-setup@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 22.x
         uses: actions/setup-node@v6
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22.x
           cache: "pnpm"
-
+      
       - name: Install dependencies
+        shell: bash
         run: pnpm install
-      
-      - name: Lint
-        run: pnpm lint:check
-      
-      - name: Format
-        run: pnpm format:check
 
-      - name: Run tests
-        run: pnpm test
+      # Test Auth0 Passwordless Action
+      - name: Test Auth0 Passwordless Action
+        uses: ./.github/actions/test-passwordless
 
   terraform:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v4
-        with:
-          terraform_version: 1.x.x # Specify your desired Terraform version
-
-      - name: Configure Terraform plugin cache
-        run: |
-          echo "TF_PLUGIN_CACHE_DIR=$HOME/.terraform.d/plugin-cache" >>"$GITHUB_ENV"
-          mkdir -p "$HOME/.terraform.d/plugin-cache"
-
-      - name: Cache Terraform
-        uses: actions/cache@v5
-        with:
-          path: |
-            ~/.terraform.d/plugin-cache
-          key: terraform-${{ runner.os }}-${{ hashFiles('**/.terraform.lock.hcl') }}
-          restore-keys: |
-            terraform-${{ runner.os }}-
-
-      - name: Terraform Init
-        id: init
-        run: terraform init
-        working-directory: ./
-
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate
-        working-directory: ./
+      # Test Terraform configuration
+      - name: Test Terraform
+        uses: ./.github/actions/test-terraform

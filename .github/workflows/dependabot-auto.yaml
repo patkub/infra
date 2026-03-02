@@ -1,6 +1,6 @@
-# Auto update Biome on Dependabot PRs
+# Auto update code on Dependabot PRs
 
-name: Update Biome on Dependabot PR
+name: Update on Dependabot PR
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -21,7 +21,7 @@ jobs:
           # Value already defaults to true, but `persist-credentials` is required
           # to push new commits to the repository.
           persist-credentials: true
-      
+
       - name: Use pnpm
         uses: pnpm/action-setup@v4
 
@@ -31,20 +31,20 @@ jobs:
           node-version: 22.x
           cache: "pnpm"
 
+      # Update pnpm
+      - name: Update pnpm
+        run: pnpm self-update
+
       - name: Install dependencies
         run: pnpm install
-      
+
+      # Biome migrate
       - name: Biome migrate
         run: pnpm biome migrate --write
-      
-      - name: Biome Lint
-        run: pnpm lint
-      
-      - name: Biome Format
-        run: pnpm format
 
-      - name: Run tests
-        run: pnpm test
+      # Test Auth0 Passwordless Action
+      - name: Test Auth0 Passwordless Action
+        uses: ./.github/actions/test-passwordless
 
       # Commit all changed files back to the repository
       - name: Commit and push changes

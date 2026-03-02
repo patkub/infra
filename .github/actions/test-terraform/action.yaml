@@ -1,0 +1,40 @@
+name: "Test Terraform"
+description: "Tests Terraform configuration"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v4
+      with:
+        terraform_version: 1.x.x # Specify your desired Terraform version
+
+    - name: Configure Terraform plugin cache
+      run: |
+        echo "TF_PLUGIN_CACHE_DIR=$HOME/.terraform.d/plugin-cache" >>"$GITHUB_ENV"
+        mkdir -p "$HOME/.terraform.d/plugin-cache"
+      shell: bash
+
+    - name: Cache Terraform
+      uses: actions/cache@v5
+      with:
+        path: |
+          ~/.terraform.d/plugin-cache
+        key: terraform-${{ runner.os }}-${{ hashFiles('**/.terraform.lock.hcl') }}
+        restore-keys: |
+          terraform-${{ runner.os }}-
+
+    - name: Terraform Init
+      id: init
+      run: terraform init
+      working-directory: ./
+      shell: bash
+
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate
+      working-directory: ./
+      shell: bash
