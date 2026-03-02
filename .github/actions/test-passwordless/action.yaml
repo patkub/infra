@@ -1,5 +1,5 @@
 name: "Test Auth0 Passwordless Action"
-description: "Tests Auth0 Passwordless Action"
+description: "Tests Auth0 passkey policy"
 
 runs:
   using: "composite"

@@ -1,5 +1,5 @@
-name: "Test Terraform"
-description: "Tests Terraform configuration"
+name: "Validate Terraform"
+description: "Validates Terraform configuration"
 
 runs:
   using: "composite"

@@ -1,3 +1,7 @@
+# Build
+#   - Tests Auth0 Passwordless Action
+#   - Validates Terraform configuration
+
 name: Build
 
 on:
@@ -7,7 +11,7 @@ on:
 
 jobs:
 
-  # This job runs tests for Auth0 passkey policy
+  # Test Auth0 passkey policy
   passwordless:
     runs-on: ubuntu-latest
 
@@ -32,12 +36,13 @@ jobs:
       - name: Test Auth0 Passwordless Action
         uses: ./.github/actions/test-passwordless
 
+  # Validate Terraform configuration
   terraform:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      # Test Terraform configuration
-      - name: Test Terraform
-        uses: ./.github/actions/test-terraform
+      # Validate Terraform configuration
+      - name: Validate Terraform
+        uses: ./.github/actions/validate-terraform

@@ -1,4 +1,7 @@
 # Auto update code on Dependabot PRs
+#   - Updates pnpm to latest version
+#   - Migrates Biome configuration to reference latest schema
+#   - Tests Auth0 Passwordless Action
 
 name: Update on Dependabot PR
 on:
