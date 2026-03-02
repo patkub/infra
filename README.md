@@ -70,6 +70,7 @@ chmod +x ./scripts/server/install.sh
 ```
 
 ### Individual Scripts
+- `./scripts/server/ufw/ufw.sh` - Allows connections from WARP devices
 - `./scripts/server/sshd/sshd.sh` - Setup sshd for Meerkat
 
 
