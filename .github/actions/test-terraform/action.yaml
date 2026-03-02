@@ -4,9 +4,6 @@ description: "Tests Terraform configuration"
 runs:
   using: "composite"
   steps:
-    - name: Checkout repository
-      uses: actions/checkout@v6
-
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v4
       with:

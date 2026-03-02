@@ -35,6 +35,9 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
       # Test Terraform configuration
       - name: Test Terraform
         uses: ./.github/actions/test-terraform
