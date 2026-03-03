@@ -23,7 +23,7 @@ locals {
   ])...)
 }
 
-# Cloudflare Gateway Policy to block ads and security risks
+# DNS Policy to block ads and security risks
 resource "cloudflare_zero_trust_gateway_policy" "zero_trust_block_categories" {
   account_id  = var.cf_account_id
   name        = "AdBlock"
@@ -39,6 +39,18 @@ resource "cloudflare_zero_trust_gateway_policy" "zero_trust_block_categories" {
     local.subcategories_map["Parked & For Sale Domains"]
     # "Security Categories" in "All security risks"
   ])}}) and any(dns.security_category[*] in {${join(" ", values(local.categories_map["Security threats"]))}})"
+}
+
+# Network Policy to allow Access Infrastructure Target
+resource "cloudflare_zero_trust_gateway_policy" "zero_trust_access_infrastructure_target" {
+  account_id  = var.cf_account_id
+  name        = "Access Infrastructure Target"
+  description = "Access Infrastructure Target"
+  precedence  = 1
+  action      = "allow"
+  enabled     = true
+  traffic     = "access.target"
+  filters     = ["l4"]
 }
 
 # Cloudflare Gateway Settings
