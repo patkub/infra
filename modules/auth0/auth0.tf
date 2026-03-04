@@ -19,7 +19,6 @@ resource "auth0_client" "cloudflare_access" {
   client_metadata                                      = {}
   cross_origin_auth                                    = false
   grant_types                                          = ["authorization_code", "refresh_token"]
-  initiate_login_uri                                   = "https://epicpatka.cloudflareaccess.com/"
   is_first_party                                       = true
   is_token_endpoint_ip_header_trusted                  = false
   name                                                 = "Cloudflare Access"
