@@ -31,8 +31,8 @@ resource "auth0_client" "cloudflare_access" {
   sso_disabled                                         = false
   web_origins                                          = []
   default_organization {
-    disable         = true
-    flows           = []
+    disable = true
+    flows   = []
   }
   jwt_configuration {
     alg                 = "RS256"
@@ -72,41 +72,139 @@ resource "auth0_prompt" "prompts" {
 
 # Form to enforce passkey login policy
 resource "auth0_form" "must_login_with_passkeys" {
-  ending       = "{\"coordinates\":{\"x\":1250,\"y\":0},\"resume_flow\":true}"
-  name         = "Must Login with passkeys"
-  nodes        = "[{\"alias\":\"New step\",\"config\":{\"components\":[{\"category\":\"BLOCK\",\"config\":{\"content\":\"\\u003ch2 style=\\\"text-align:center;\\\"\\u003e\\u003cstrong\\u003e{{ t('must_use_passkeys') }}\\u003c/strong\\u003e\\u003c/h2\\u003e\"},\"id\":\"rich_text_lGGp\",\"type\":\"RICH_TEXT\"},{\"category\":\"BLOCK\",\"config\":{\"text\":\"Continue\"},\"id\":\"next_button_EeLt\",\"type\":\"NEXT_BUTTON\"},{\"category\":\"BLOCK\",\"id\":\"divider_xFa3\",\"type\":\"DIVIDER\"}],\"next_node\":\"$ending\"},\"coordinates\":{\"x\":500,\"y\":0},\"id\":\"step_3q2e\",\"type\":\"STEP\"}]"
-  start        = "{\"coordinates\":{\"x\":0,\"y\":0},\"next_node\":\"step_3q2e\"}"
-  style        = null
-  translations = null
+  name = "Must Login with passkeys"
+  start = jsonencode({
+    coordinates = {
+      x = 0
+      y = 0
+    }
+    next_node = "step_3q2e"
+  })
+  nodes = jsonencode(
+    [
+      {
+        "alias" : "New step",
+        "config" : {
+          "components" : [
+            {
+              "category" : "BLOCK",
+              "config" : {
+                "content" : "<h2 style=\"text-align:center;\"><strong>{{ t('must_use_passkeys') }}</strong></h2>"
+              },
+              "id" : "rich_text_lGGp",
+              "type" : "RICH_TEXT"
+            },
+            {
+              "category" : "BLOCK",
+              "config" : {
+                "text" : "Continue"
+              },
+              "id" : "next_button_EeLt",
+              "type" : "NEXT_BUTTON"
+            },
+            {
+              "category" : "BLOCK",
+              "id" : "divider_xFa3",
+              "type" : "DIVIDER"
+            }
+          ],
+          "next_node" : "$ending"
+        },
+        "coordinates" : {
+          "x" : 500,
+          "y" : 0
+        },
+        "id" : "step_3q2e",
+        "type" : "STEP"
+      }
+    ]
+  )
+  ending = jsonencode({
+    coordinates = {
+      x = 1250
+      y = 0
+    }
+    resume_flow = true
+  })
   languages {
-    default = null
+    default = "en"
     primary = "en"
   }
   messages {
-    custom = "{\"must_use_passkeys\":\"Please login with a passkey\"}"
-    errors = null
+    custom = jsonencode({
+      must_use_passkeys = "Please login with a passkey"
+    })
   }
 }
 
 # Form to notify about passkey login policy
 resource "auth0_form" "notify_about_passkey_policy" {
-  ending       = "{\"coordinates\":{\"x\":1250,\"y\":0},\"resume_flow\":true}"
-  name         = "Notify about passkey Policy"
-  nodes        = "[{\"alias\":\"New step\",\"config\":{\"components\":[{\"category\":\"BLOCK\",\"config\":{\"content\":\"\\u003ch2 style=\\\"text-align:center;\\\"\\u003e\\u003cstrong\\u003e{{ t('must_use_passkeys') }}\\u003c/strong\\u003e\\u003c/h2\\u003e\\u003ch2 style=\\\"text-align:center;\\\"\\u003e\\u003cstrong\\u003e{{ t('logins_left1') }} {{vars.logins_left}}  {{ t('logins_left2')}}\\u003c/strong\\u003e\\u003c/h2\\u003e\"},\"id\":\"rich_text_lGGp\",\"type\":\"RICH_TEXT\"},{\"category\":\"BLOCK\",\"config\":{\"text\":\"Continue\"},\"id\":\"next_button_EeLt\",\"type\":\"NEXT_BUTTON\"},{\"category\":\"BLOCK\",\"id\":\"divider_xFa3\",\"type\":\"DIVIDER\"}],\"next_node\":\"$ending\"},\"coordinates\":{\"x\":500,\"y\":0},\"id\":\"step_3q2e\",\"type\":\"STEP\"}]"
-  start        = "{\"coordinates\":{\"x\":0,\"y\":0},\"next_node\":\"step_3q2e\"}"
-  style        = null
-  translations = null
+  name = "Notify about passkey Policy"
+  nodes = jsonencode([
+    {
+      "alias" : "New step",
+      "config" : {
+        "components" : [
+          {
+            "category" : "BLOCK",
+            "config" : {
+              "content" : "\u003ch2 style=\"text-align:center;\"\u003e\u003cstrong\u003e{{ t('must_use_passkeys') }}\u003c/strong\u003e\u003c/h2\u003e\u003ch2 style=\"text-align:center;\"\u003e\u003cstrong\u003e{{ t('logins_left1') }} {{vars.logins_left}}  {{ t('logins_left2')}}\u003c/strong\u003e\u003c/h2\u003e"
+            },
+            "id" : "rich_text_lGGp",
+            "type" : "RICH_TEXT"
+          },
+          {
+            "category" : "BLOCK",
+            "config" : {
+              "text" : "Continue"
+            },
+            "id" : "next_button_EeLt",
+            "type" : "NEXT_BUTTON"
+          },
+          {
+            "category" : "BLOCK",
+            "id" : "divider_xFa3",
+            "type" : "DIVIDER"
+          }
+        ],
+        "next_node" : "$ending"
+      },
+      "coordinates" : {
+        "x" : 500,
+        "y" : 0
+      },
+      "id" : "step_3q2e",
+      "type" : "STEP"
+    }
+  ])
+  start = jsonencode({
+    coordinates = {
+      x = 0
+      y = 0
+    }
+    next_node = "step_3q2e"
+  })
+  ending = jsonencode({
+    coordinates = {
+      x = 1250
+      y = 0
+    }
+    resume_flow = true
+  })
   languages {
-    default = null
+    default = "en"
     primary = "en"
   }
   messages {
-    custom = "{\"logins_left1\":\"You have \",\"logins_left2\":\" logins left without passkeys\",\"must_use_passkeys\":\"Please enroll a passkey\"}"
-    errors = null
+    custom = jsonencode({
+      "logins_left1" : "You have ",
+      "logins_left2" : " logins left without passkeys",
+      "must_use_passkeys" : "Please enroll a passkey"
+    })
   }
 }
 
-# Action to force users to authenticate with passkeys "0c6cc5ae-5fcb-4f26-9a24-c78cbb71bcb8"
+# Action to force users to authenticate with passkeys
 resource "auth0_action" "passwordless" {
   code    = file("${path.module}/passwordless.js")
   deploy  = true
