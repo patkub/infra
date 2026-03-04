@@ -30,7 +30,7 @@ resource "cloudflare_zero_trust_access_application" "meerkat_infra_app" {
     port     = 22
     protocol = "SSH"
     target_attributes = {
-      "hostname" = ["meerkat"]
+      "hostname" = [cloudflare_zero_trust_access_infrastructure_target.meerkat_infra_target.hostname]
     }
   }]
 
