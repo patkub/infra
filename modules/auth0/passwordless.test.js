@@ -1,9 +1,15 @@
+/** @import {Event, PostLoginAPI} from "@auth0/actions/post-login/v3" */
+
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
 import { onExecutePostLogin, onContinuePostLogin } from "./passwordless.js";
 
 describe("Passwordless", () => {
-  let event, api;
+  /** @type {Event} */
+  let event;
+
+  /** @type {PostLoginAPI} */
+  let api;
 
   const USED_PASSKEY_CLAIM_NAME = "https://patkub.vip/usedPasskey";
 
