@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 22.x
           cache: "pnpm"
-      
+
       - name: Install dependencies
         shell: bash
         run: pnpm install
