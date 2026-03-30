@@ -25,7 +25,7 @@ function __sdk_install() {
 
   # only run for java installs
   if [ "$candidate" != "java" ]; then
-    return 1
+    return 0
   fi
 
   # get java home

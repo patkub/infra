@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Enable globstar for recursive globbing
+shopt -s globstar
+
 # Get absolute path to this script
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
