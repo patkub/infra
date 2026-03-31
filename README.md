@@ -25,6 +25,8 @@ Implemented Cloudflare Zero Trust access controls using Cloudflare Access and Au
 
 ## Cloud Configuration
 
+Prerequisites: [Terraform](https://developer.hashicorp.com/terraform/install)
+
 Reference `terraform.tfvars.example`.
 
 Create `terraform.tfvars` with:
@@ -96,7 +98,7 @@ chmod +x ./scripts/client/install.sh
 
 ## Dev Setup
 
-[Node.js v22 LTS](https://nodejs.org/en/download), [pnpm](https://pnpm.io/installation)
+Prerequisites: [Node.js v22 LTS](https://nodejs.org/en/download), [pnpm](https://pnpm.io/installation)
 
 Install dependencies
 
