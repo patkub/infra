@@ -14,6 +14,11 @@ updates:
     directory: "/"
     patterns: ["*"]
     multi-ecosystem-group: "infrastructure"
+    cooldown:
+      # pnpm sets minimumReleaseAge to 1440 minutes (1 day), which means that it will not install a new version of a package until it has been available for at least 1 day.
+      # Set cooldown to 1 day to match pnpm's minimumReleaseAge to prevent lockfile validation issues.
+      # https://pnpm.io/supply-chain-security
+      default-days: 1
 
   # GitHub Actions
   - package-ecosystem: "github-actions"
