@@ -54,6 +54,8 @@ jobs:
         # This action handles committing any changes made by the script
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          # Add [dependabot skip] to the commit message to prevent Dependabot
+          # Add [dependabot-skip] to the commit message to prevent Dependabot
           # from treating the PR as manually modified and stopping updates.
-          commit_message: "chore(deps): [dependabot skip] auto updates"
+          # Must use dependabot-skip or skip-dependabot so that global GitHub
+          # Action skip is NOT triggered.
+          commit_message: "chore(deps): [dependabot-skip] auto updates"
