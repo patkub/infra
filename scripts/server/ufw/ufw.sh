@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Configure UFW rules for Meerkat
 
 # Allow connections from WARP devices

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Get absolute path to this script
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Setup sshd for Meerkat
 if ! grep -q -x '# Cloudflared config' "/etc/ssh/sshd_config.d/cloudflared.conf"; then
   sudo tee -a /etc/ssh/sshd_config.d/cloudflared.conf >/dev/null <<'EOF'

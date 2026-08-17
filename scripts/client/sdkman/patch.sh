@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Patch SDKMAN! to automatically install Cloudflare Zero Trust certificate when installing a Java JDK.
 

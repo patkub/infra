@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ### Auto import Cloudflare Zero Trust certificate after install
 
