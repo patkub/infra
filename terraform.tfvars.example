@@ -6,6 +6,8 @@ cf_api_key                          = "..."
 cf_account_id                       = "..."
 # Cloudflare Domain Overview API Zone ID
 cf_zone_id                          = "..."
+# Cloudflare Access Team Name
+cf_access_team                      = "..."
 
 # Auth0 M2M Application Details
 AUTH0_DOMAIN                        = "..."
