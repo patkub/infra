@@ -3,7 +3,7 @@
 # WARP Connector profile
 resource "cloudflare_zero_trust_device_custom_profile" "warp_connector_custom_profile" {
   account_id            = var.cf_account_id
-  match                 = "identity.email == \"warp_connector@epicpatka.cloudflareaccess.com\""
+  match                 = "identity.email == \"warp_connector@${var.cf_access_team}.cloudflareaccess.com\""
   name                  = "WARP Connector"
   precedence            = 100
   allow_mode_switch     = true

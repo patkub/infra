@@ -25,6 +25,13 @@ variable "cf_zone_id" {
   sensitive   = true
 }
 
+# Cloudflare Access Team
+variable "cf_access_team" {
+  description = "Cloudflare Access Team"
+  type        = string
+  sensitive   = false
+}
+
 # Auth0 M2M Application Details
 variable "AUTH0_DOMAIN" {
   description = "Auth0 Domain"

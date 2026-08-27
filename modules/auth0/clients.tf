@@ -4,7 +4,8 @@ resource "auth0_client" "cloudflare_access" {
   allowed_logout_urls                                  = []
   allowed_origins                                      = []
   app_type                                             = "regular_web"
-  callbacks                                            = ["https://epicpatka.cloudflareaccess.com/cdn-cgi/access/callback"]
+  initiate_login_uri                                   = "https://${var.cf_access_team}.cloudflareaccess.com/warp"
+  callbacks                                            = ["https://${var.cf_access_team}.cloudflareaccess.com/cdn-cgi/access/callback"]
   client_aliases                                       = []
   client_metadata                                      = {}
   cross_origin_auth                                    = false

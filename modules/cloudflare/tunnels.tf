@@ -19,7 +19,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "meerkat_zero_trust_t
         origin_request = {
           access = {
             aud_tag   = [cloudflare_zero_trust_access_application.meerkat.aud]
-            team_name = "epicpatka"
+            team_name = var.cf_access_team
             required  = true
           }
           ca_pool                  = "caPool"

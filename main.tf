@@ -5,6 +5,9 @@ module "auth0" {
   # Passkey Policy Settings
   # Number of logins without a passkey (min: "1")
   MAX_LOGINS_WITHOUT_PASSKEY = var.MAX_LOGINS_WITHOUT_PASSKEY
+
+  # Cloudflare Access Team
+  cf_access_team = var.cf_access_team
 }
 
 # Cloudflare module
@@ -19,4 +22,6 @@ module "cloudflare" {
   cf_account_id = var.cf_account_id
   # Cloudflare Domain Overview API Zone ID
   cf_zone_id = var.cf_zone_id
+  # Cloudflare Access Team
+  cf_access_team = var.cf_access_team
 }

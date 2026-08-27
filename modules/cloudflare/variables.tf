@@ -12,6 +12,13 @@ variable "cf_zone_id" {
   sensitive   = true
 }
 
+# Cloudflare Access Team
+variable "cf_access_team" {
+  description = "Cloudflare Access Team"
+  type        = string
+  sensitive   = false
+}
+
 # Auth0 Client ID for Cloudflare Access OIDC Client
 variable "auth0_client_cloudflare_access_id" {
   description = "Cloudflare Access Auth0 Client ID"
