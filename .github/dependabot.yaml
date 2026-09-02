@@ -12,6 +12,7 @@ updates:
   # Terraform dependencies
   - package-ecosystem: "terraform"
     directory: "/"
+    patterns: ["*"]
     multi-ecosystem-group: "infrastructure"
 
   # npm (Node.js) dependencies
