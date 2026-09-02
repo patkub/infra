@@ -9,6 +9,11 @@ multi-ecosystem-groups:
       interval: "weekly"
 
 updates:
+  # Terraform dependencies
+  - package-ecosystem: "terraform"
+    directory: "/"
+    multi-ecosystem-group: "infrastructure"
+
   # npm (Node.js) dependencies
   - package-ecosystem: "npm"
     directory: "/"
