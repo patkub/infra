@@ -23,7 +23,7 @@
   "keywords": [],
   "author": "Patrick Kubiak <epicpatka@gmail.com>",
   "license": "MIT",
-  "packageManager": "pnpm@12.4.1",
+  "packageManager": "pnpm@12.5.1",
   "devDependencies": {
     "@auth0/actions": "^0.34.0",
     "@biomejs/biome": "2.5.14",
