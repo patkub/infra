@@ -60,6 +60,11 @@ terraform init
 terraform apply
 ```
 
+- `terraform init` - Initialize prepares your workspace so Terraform can apply your configuration.
+- `terraform plan` - Plan allows you to preview the changes Terraform will make before you apply them.
+- `terraform apply` - Apply makes the changes defined by your plan to create, update, or destroy resources.
+- `terraform test` - Runs unit tests.
+
 ## Server Configuration
 
 Follow: [SSH with Access for Infrastructure: Configure SSH Server](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/use-cases/ssh/ssh-infrastructure-access/#7-configure-ssh-server)
