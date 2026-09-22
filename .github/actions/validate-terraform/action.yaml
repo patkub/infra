@@ -38,6 +38,6 @@ runs:
     
     - name: Terraform Test
       id: test
-      run: terraform test -var-file="tests/test.tfvars"
+      run: terraform test
       working-directory: ./
       shell: bash
