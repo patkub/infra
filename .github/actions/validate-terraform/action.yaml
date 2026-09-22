@@ -35,3 +35,9 @@ runs:
       run: terraform validate
       working-directory: ./
       shell: bash
+    
+    - name: Terraform Test
+      id: test
+      run: terraform test -var-file="tests/test.tfvars"
+      working-directory: ./
+      shell: bash
