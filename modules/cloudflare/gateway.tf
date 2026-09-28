@@ -6,21 +6,20 @@ data "cloudflare_zero_trust_gateway_categories_list" "categories" {
 
 locals {
   # main category to list of all subcategory ids
-  categories_map = {
-    for idx, c in data.cloudflare_zero_trust_gateway_categories_list.categories.result :
-    c.name => {
-      for k, v in coalesce(c.subcategories, []) :
-      v.name => v.id
-    }
+  # category name => category id
+  category_ids = {
+    for c in data.cloudflare_zero_trust_gateway_categories_list.categories.result :
+    c.name => c.id
   }
 
-  # subcategory to id
-  subcategories_map = merge(flatten([
-    for idx, c in data.cloudflare_zero_trust_gateway_categories_list.categories.result : {
-      for k, v in coalesce(c.subcategories, []) :
-      v.name => v.id
-    }
-  ])...)
+  # category name => { subcategory name => id }
+  categories_map = {
+    for c in data.cloudflare_zero_trust_gateway_categories_list.categories.result :
+    c.name => { for s in coalesce(c.subcategories, []) : s.name => s.id }
+  }
+
+  # subcategory name => id (across all categories)
+  subcategories_ids = merge(values(local.categories_map)...)
 }
 
 # Network Policy to allow Access Infrastructure Target
@@ -46,9 +45,10 @@ resource "cloudflare_zero_trust_gateway_policy" "zero_trust_block_categories" {
   filters     = ["dns"]
   # "Content Categories" in "Ads"
   traffic = "any(dns.content_category[*] in {${join(" ", [
-    local.subcategories_map["Advertisements"],
-    local.subcategories_map["Deceptive Ads"],
-    local.subcategories_map["Parked & For Sale Domains"]
+    local.category_ids["Ads"],
+    local.subcategories_ids["Trackers/Analytics"],
+    local.subcategories_ids["Deceptive Ads"],
+    local.subcategories_ids["Parked & For Sale Domains"],
     # "Security Categories" in "All security risks"
   ])}}) and any(dns.security_category[*] in {${join(" ", values(local.categories_map["Security threats"]))}})"
 }
