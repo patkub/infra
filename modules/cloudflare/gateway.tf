@@ -50,7 +50,7 @@ resource "cloudflare_zero_trust_gateway_policy" "zero_trust_block_categories" {
     local.subcategories_ids["Deceptive Ads"],
     local.subcategories_ids["Parked & For Sale Domains"],
     # "Security Categories" in "All security risks"
-  ])}}) and any(dns.security_category[*] in {${join(" ", values(local.categories_map["Security threats"]))}})"
+  ])}}) or any(dns.security_category[*] in {${join(" ", values(local.categories_map["Security threats"]))}})"
 }
 
 # Cloudflare Gateway Settings
