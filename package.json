@@ -26,8 +26,8 @@
   "packageManager": "pnpm@12.8.1",
   "devDependencies": {
     "@auth0/actions": "^0.34.0",
-    "@biomejs/biome": "2.5.14",
-    "@vitest/coverage-v8": "^5.0.2",
-    "vitest": "^5.0.2"
+    "@biomejs/biome": "2.5.15",
+    "@vitest/coverage-v8": "^5.0.3",
+    "vitest": "^5.0.3"
   }
 }
