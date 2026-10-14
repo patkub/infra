@@ -23,11 +23,11 @@
   "keywords": [],
   "author": "Patrick Kubiak <epicpatka@gmail.com>",
   "license": "MIT",
-  "packageManager": "pnpm@12.9.1",
+  "packageManager": "pnpm@12.11.2",
   "devDependencies": {
-    "@auth0/actions": "^0.34.0",
+    "@auth0/actions": "^0.35.0",
     "@biomejs/biome": "2.5.15",
-    "@vitest/coverage-v8": "^5.0.3",
-    "vitest": "^5.0.3"
+    "@vitest/coverage-v8": "^5.0.4",
+    "vitest": "^5.0.4"
   }
 }
