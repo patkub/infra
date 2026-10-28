@@ -25,6 +25,19 @@ jobs:
           # to push new commits to the repository.
           persist-credentials: true
 
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Only run on npm updates
+      - name: Stop unless this is an npm update
+        if: steps.metadata.outputs.package-ecosystem != 'npm_and_yarn'
+        run: |
+          echo "Not an npm update, skipping."
+          exit 0
+
       - name: Use pnpm
         uses: pnpm/action-setup@v6
 
