@@ -23,6 +23,7 @@ jobs:
 
   generate-code:
     # Only run this job for npm updates
+    needs: metadata
     if: ${{ needs.metadata.outputs.dependency-group == 'npm' }}
     runs-on: ubuntu-latest
     permissions:
