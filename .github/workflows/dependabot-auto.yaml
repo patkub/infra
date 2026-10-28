@@ -8,9 +8,22 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  generate-code:
+  metadata:
     # Only run this job for Dependabot PRs
     if: ${{ github.actor == 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+    outputs:
+      dependency-group: ${{ steps.metadata.outputs.dependency-group }}
+    steps:
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  generate-code:
+    # Only run this job for npm updates
+    if: ${{ needs.metadata.outputs.dependency-group == 'npm' }}
     runs-on: ubuntu-latest
     permissions:
       # Give the default GITHUB_TOKEN write permission
@@ -24,19 +37,6 @@ jobs:
           # Value already defaults to true, but `persist-credentials` is required
           # to push new commits to the repository.
           persist-credentials: true
-
-      - name: Fetch Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      # Only run on npm updates
-      - name: Stop unless this is an npm update
-        if: steps.metadata.outputs.dependency-group != 'npm'
-        run: |
-          echo "Not an npm update, skipping."
-          exit 0
 
       - name: Use pnpm
         uses: pnpm/action-setup@v6
