@@ -35,7 +35,7 @@ runs:
       run: terraform validate
       working-directory: ./
       shell: bash
-    
+
     - name: Terraform Test
       id: test
       run: terraform test

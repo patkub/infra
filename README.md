@@ -79,6 +79,7 @@ chmod +x ./scripts/server/install.sh
 ```
 
 ### Individual Scripts
+
 - `./scripts/server/ufw/ufw.sh` - Allows connections from WARP devices
 - `./scripts/server/sshd/sshd.sh` - Setup sshd for Meerkat
 
@@ -99,6 +100,7 @@ chmod +x ./scripts/client/install.sh
 - Patches SDKMAN! to automatically import Cloudflare Zero Trust certificate when installing a Java JDK
 
 ### Individual Scripts
+
 - `./scripts/client/ssh/ssh.sh` - Adds SSH host for meerkat
 - `./scripts/client/npm/npm.sh` - Configures npmrc
 - `./scripts/client/sdkman/patch.sh` - Patches SDKMAN!
