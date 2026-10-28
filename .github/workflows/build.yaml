@@ -10,7 +10,6 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-
   # Test Auth0 passkey policy
   passwordless:
     runs-on: ubuntu-latest
