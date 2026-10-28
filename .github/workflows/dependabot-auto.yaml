@@ -33,7 +33,7 @@ jobs:
 
       # Only run on npm updates
       - name: Stop unless this is an npm update
-        if: steps.metadata.outputs.package-ecosystem != 'npm_and_yarn'
+        if: steps.metadata.outputs.dependency-group != 'npm'
         run: |
           echo "Not an npm update, skipping."
           exit 0
