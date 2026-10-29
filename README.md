@@ -116,7 +116,7 @@ pnpm install
 ```
 
 Lint
-- `pnpm check` - Lint with biome and apply formatting changes, safe lint fixes, and safe assist actions
+- `pnpm check` - Lint with biome and apply formatting changes, lint fixes, and assist actions
 - `pnpm check:ci` - Check formatting, linting, and assist actions with biome
 
 Run tests
