@@ -21,7 +21,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-  generate-code:
+  npm-updates:
     # Only run this job for npm updates
     needs: metadata
     if: ${{ needs.metadata.outputs.dependency-group == 'npm' }}
@@ -72,4 +72,4 @@ jobs:
           # from treating the PR as manually modified and stopping updates.
           # Must use dependabot-skip or skip-dependabot so that global GitHub
           # Action skip is NOT triggered.
-          commit_message: "chore(deps): [dependabot-skip] auto updates"
+          commit_message: "chore(deps): [dependabot-skip] auto npm updates"
