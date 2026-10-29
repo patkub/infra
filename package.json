@@ -13,10 +13,8 @@
   },
   "type": "module",
   "scripts": {
-    "lint": "biome lint --write --unsafe",
-    "lint:check": "biome lint",
-    "format": "biome format --write",
-    "format:check": "biome format",
+    "check": "biome check --write",
+    "check:ci": "biome check",
     "test": "vitest run --silent --coverage",
     "test:watch": "vitest --silent"
   },

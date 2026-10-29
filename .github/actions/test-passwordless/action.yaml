@@ -4,13 +4,9 @@ description: "Tests Auth0 passkey policy"
 runs:
   using: "composite"
   steps:
-    - name: Lint
+    - name: Biome check
       shell: bash
-      run: pnpm lint:check
-
-    - name: Format
-      shell: bash
-      run: pnpm format:check
+      run: pnpm check:ci
 
     - name: Run tests
       shell: bash

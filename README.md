@@ -116,10 +116,8 @@ pnpm install
 ```
 
 Lint
-- `pnpm lint` - Lint with biome and apply changes
-- `pnpm lint:check` - Check linting with biome
-- `pnpm format` - Format with biome and apply changes
-- `pnpm format:check` - Check formatting with biome
+- `pnpm check` - Lint with biome and apply formatting changes, safe lint fixes, and safe assist actions
+- `pnpm check:ci` - Check formatting, linting, and assist actions with biome
 
 Run tests
 - `pnpm test` - Run unit tests
