@@ -59,6 +59,11 @@ jobs:
       - name: Biome migrate
         run: pnpm biome migrate --write
 
+      # Apply new Biome changes
+      # Lint with Biome and apply formatting changes, lint fixes, and assist actions
+      - name: Biome check
+        run: pnpm check
+
       # Test Auth0 Passwordless Action
       - name: Test Auth0 Passwordless Action
         uses: ./.github/actions/test-passwordless
