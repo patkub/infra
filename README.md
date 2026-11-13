@@ -7,6 +7,7 @@ Cloudflare Access secured with Auth0 and passkey only login
 ## Overview
 
 Terraform configuration for my infrastructure
+
 - Cloudflare Access is secured with Auth0
 - Auth0 Action and Forms enforce login with passkey only
 - A DNS based Adblock policy
@@ -83,7 +84,6 @@ chmod +x ./scripts/server/install.sh
 - `./scripts/server/ufw/ufw.sh` - Allows connections from WARP devices
 - `./scripts/server/sshd/sshd.sh` - Setup sshd for Meerkat
 
-
 ## Client Configuration
 
 Reference: [Short-lived certificates (legacy): Connect as a user](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/non-http/short-lived-certificates-legacy/#7-connect-as-a-user)
@@ -116,12 +116,15 @@ pnpm install
 ```
 
 Lint
+
 - `pnpm check` - Lint with Biome and apply formatting changes, lint fixes, and assist actions
 - `pnpm check:ci` - Check formatting, linting, and assist actions with Biome
 
 Run tests
+
 - `pnpm test` - Run unit tests
 - `pnpm test:watch` - Automatically re-run tests when files change
 
 Demo
+
 - Demo created with [vhs](https://github.com/charmbracelet/vhs)
