@@ -5,10 +5,8 @@ mock_provider "cloudflare" {}
 
 # Mock variables
 variables {
-  # Cloudflare Account Email
-  cf_email                            = ""
   # Cloudflare Global API Key ( https://dash.cloudflare.com/profile/api-tokens )
-  cf_api_key                          = "0000000000000000000000000000000000000"
+  cf_api_token                        = ""
   # Cloudflare Domain Overview Account ID
   cf_account_id                       = ""
   # Cloudflare Domain Overview API Zone ID
