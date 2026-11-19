@@ -33,12 +33,8 @@ Reference `terraform.tfvars.example`.
 Create `terraform.tfvars` with:
 
 ```bash
-# Cloudflare Account Email
-cf_email                            = "..."
-# Cloudflare Global API Key ( https://dash.cloudflare.com/profile/api-tokens )
-cf_api_key                          = "..."
-# Cloudflare Domain Overview Account ID
-cf_account_id                       = "..."
+# Cloudflare Account API Token ( https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/ )
+cf_api_token                        = "..."
 # Cloudflare Domain Overview API Zone ID
 cf_zone_id                          = "..."
 # Cloudflare Access Team Name

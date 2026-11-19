@@ -1,13 +1,6 @@
-# Cloudflare Account Email
-variable "cf_email" {
-  description = "Cloudflare Account Email"
-  type        = string
-  sensitive   = true
-}
-
-# Cloudflare Global API Key ( https://dash.cloudflare.com/profile/api-tokens )
-variable "cf_api_key" {
-  description = "Cloudflare API Key"
+# Cloudflare Account API Token ( https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/ )
+variable "cf_api_token" {
+  description = "Cloudflare API Token"
   type        = string
   sensitive   = true
 }

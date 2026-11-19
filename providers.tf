@@ -14,8 +14,7 @@ terraform {
 
 # Cloudflare Provider Configuration
 provider "cloudflare" {
-  email   = var.cf_email
-  api_key = var.cf_api_key
+  api_token = var.cf_api_token
 }
 
 # Auth0 Provider Configuration
