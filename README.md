@@ -30,7 +30,7 @@ Prerequisites: [Terraform](https://developer.hashicorp.com/terraform/install)
 
 
 <details>
-<summary>Create a Cloudflare Account API Token with the following permissions:</summary>
+<summary>Create a Cloudflare Account API Token with the following permissions (expand)</summary>
 
 [Cloudflare Account API Token](https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/)
 
