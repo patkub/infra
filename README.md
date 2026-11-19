@@ -28,33 +28,36 @@ Implemented Cloudflare Zero Trust access controls using Cloudflare Access and Au
 
 Prerequisites: [Terraform](https://developer.hashicorp.com/terraform/install)
 
-
 <details>
 <summary>Create a Cloudflare Account API Token with the following permissions (expand)</summary>
 
 [Cloudflare Account API Token](https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/)
 
-- Access: Apps Read
-- Access: Apps Revoke
-- Access: Apps Write
-- Cloudflare One Connector: WARP Read
-- Cloudflare One Connector: WARP Write
-- Cloudflare One Connector: cloudflared Read
-- Cloudflare One Connector: cloudflared Write
-- Zero Trust Read
-- Zero Trust Report
-- Zero Trust Write
-- Access: Organizations, Identity Providers, and Groups Read
-- Access: Organizations, Identity Providers, and Groups Revoke
-- Access: Organizations, Identity Providers, and Groups Write
-- Access: Policies Read
-- Access: Policies Write
-- Cloudflare One Networks Read
-- Cloudflare One Networks Write
-- Account DNS Settings Read
-- Account DNS Settings Write
-</details>
+Entire Epicpatka\@gmail.com's Account account
 
+- Access: Policies Write
+- Access: Policies Read
+- Access: Apps Write
+- Access: Apps Revoke
+- Access: Apps Read
+- Cloudflare One Networks Write
+- Cloudflare One Networks Read
+- Cloudflare One Connector: WARP Write
+- Cloudflare One Connector: WARP Read
+- Cloudflare One Connector: cloudflared Write
+- Cloudflare One Connector: cloudflared Read
+- Access: Organizations, Identity Providers, and Groups Revoke
+- Zero Trust Report
+- Zero Trust Read
+- Zero Trust Write
+- Access: Organizations, Identity Providers, and Groups Write
+- Access: Organizations, Identity Providers, and Groups Read
+
+patkub.vip in Epicpatka\@gmail.com's Account
+
+- DNS Read
+- DNS Write
+</details>
 
 Reference `terraform.tfvars.example`.
 
