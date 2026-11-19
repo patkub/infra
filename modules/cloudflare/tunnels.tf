@@ -22,20 +22,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "meerkat_zero_trust_t
             team_name = var.cf_access_team
             required  = true
           }
-          ca_pool                  = "caPool"
-          connect_timeout          = 10
-          disable_chunked_encoding = true
-          http2_origin             = true
-          http_host_header         = "httpHostHeader"
-          keep_alive_connections   = 100
-          keep_alive_timeout       = 90
-          match_sn_ito_host        = false
-          no_happy_eyeballs        = false
-          no_tls_verify            = false
-          origin_server_name       = "originServerName"
-          proxy_type               = "proxyType"
-          tcp_keep_alive           = 30
-          tls_timeout              = 10
+          connect_timeout = 10
         },
       },
       {
