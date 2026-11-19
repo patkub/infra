@@ -58,30 +58,6 @@ resource "cloudflare_zero_trust_access_policy" "allow_epicpatka_policy" {
   }]
 }
 
-# Zero Trust Access Application for App Launcher
-# Allows access via Auth0 OIDC Identity Provider (IdP)
-resource "cloudflare_zero_trust_access_application" "app_launcher" {
-  account_id = var.cf_account_id
-  name       = "Organization App Launcher"
-  type       = "app_launcher"
-
-  # Instant Auth: Allow users to skip identity provider selection when only one login method is available.
-  auto_redirect_to_identity = true
-  # WARP authentication identity
-  allow_authenticate_via_warp = false
-  # Enables automatic authentication through cloudflared.
-  skip_interstitial = true
-
-  # Allow epicpatka
-  policies = [{
-    id         = cloudflare_zero_trust_access_policy.allow_epicpatka_policy.id
-    precedence = 1
-  }]
-
-  # Auth0 OIDC Provider
-  allowed_idps = [cloudflare_zero_trust_access_identity_provider.oidc_provider.id]
-}
-
 # Zero Trust Access Application for Meerkat SSH
 # Allows access via Auth0 OIDC Identity Provider (IdP)
 resource "cloudflare_zero_trust_access_application" "meerkat" {
