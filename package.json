@@ -23,9 +23,9 @@
   "license": "MIT",
   "packageManager": "pnpm@12.21.0",
   "devDependencies": {
-    "@auth0/actions": "^0.36.0",
+    "@auth0/actions": "^0.37.0",
     "@biomejs/biome": "2.6.8",
-    "@vitest/coverage-v8": "^5.1.0",
-    "vitest": "^5.1.0"
+    "@vitest/coverage-v8": "^5.1.1",
+    "vitest": "^5.1.1"
   }
 }
